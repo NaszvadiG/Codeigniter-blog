@@ -14,20 +14,16 @@ class MY_Controller extends CI_Controller {
 
         $this->data['NotifLastIPLog'] = false;
 
-        // CSS
-        $this->layout->add_includes('css', 'http://fonts.googleapis.com/css?family=Oswald:400,700,300', 1);
-        $this->layout->add_includes('css', 'assets/css/Framework/font-awesome.css');
-        $this->layout->add_includes('css', 'assets/css/Framework/bootstrap.css');
-        $this->layout->add_includes('css', 'assets/css/Framework/bootstrap-theme.css');
-        $this->layout->add_includes('css', 'assets/css/Framework/normalize.css');
-        $this->layout->add_includes('css', 'assets/css/style.css');
-        // JS
-        $this->layout->add_includes('js', 'assets/js/Library/jquery.js');
-        $this->layout->add_includes('js', 'assets/js/Library/bootstrap.js');
-        $this->layout->add_includes('js', 'assets/js/script.js');
+        // On charge les fichiers important 
+        $this->GetCSS(); //Css
+        $this->GetJS(); //JS
+        
+        // Gestion language
+        $this->SetLang();
 
-        // Set the version
-        $this->data['version'] = '<strong>1.0.0.0</strong> (CodeIgniter : <strong>' . CI_VERSION . '</strong>)';
+        // Les variables global
+        $this->data['name_site'] = $this->config->item('name_site');
+        $this->data['version'] = $this->config->item('version');
 
         // Vérification des bann's IP
         if ($this->General_model->GetIpBanned($this->input->ip_address()) == TRUE) {
@@ -57,8 +53,7 @@ class MY_Controller extends CI_Controller {
         $this->layout->add_includes('css', 'http://fonts.googleapis.com/css?family=Oswald:400,700,300', 1);
         $this->layout->add_includes('css', 'assets/css/Framework/font-awesome.css');
         $this->layout->add_includes('css', 'assets/css/Framework/bootstrap.css');
-        $this->layout->add_includes('css', 'assets/css/Framework/bootstrap-theme.css');
-        $this->layout->add_includes('css', 'assets/css/Framework/normalize.css');
+        //$this->layout->add_includes('css', 'assets/css/Framework/bootstrap-theme.css');
         $this->layout->add_includes('css', 'assets/css/style.css');
         
         return $this;
@@ -71,7 +66,16 @@ class MY_Controller extends CI_Controller {
         * Librairies
         */
         $this->layout->add_includes('js', 'assets/js/Library/jquery.js');
+        $this->layout->add_includes('js', 'assets/js/Library/tether.js');
         $this->layout->add_includes('js', 'assets/js/Library/bootstrap.js');
+        
+        /*
+        * Helpers
+        */
+        $this->layout->add_includes('js', 'assets/js/Helper/html5shiv.js');
+        $this->layout->add_includes('js', 'assets/js/Helper/lang.js');
+        $this->layout->add_includes('js', 'assets/js/Helper/cookie.js');
+        $this->layout->add_includes('js', 'assets/js/Helper/Consol.js');
         
         /*
          * Other

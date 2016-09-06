@@ -17,7 +17,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
  * | environments.
  * |
  */
-$config ['base_url'] = 'http://blog.dev/';
+$config ['base_url'] = "http://" . $_SERVER['HTTP_HOST'];
 
 /*
  * |--------------------------------------------------------------------------

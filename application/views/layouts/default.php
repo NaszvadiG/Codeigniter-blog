@@ -8,7 +8,7 @@
         <?php
         if (isset ( $includes_for_layout ['css'] ) and count ( $includes_for_layout ['css'] ) > 0) {
             foreach ( $includes_for_layout ['css'] as $css ) {
-                echo ('<link rel="stylesheet" type="text/css" href="' . $css ['file'] . '"' . ($css ['options'] === NULL ? '' : ' media="' . $css ['options'] . '"') . '>');
+                echo ('<link rel="stylesheet" type="text/css" href="' . $css ['file'] . '"' . ($css ['options'] === NULL ? '' : ' media="' . $css ['options'] . '"') . '>' . "\r\n");
             }
         }
         ?>
@@ -16,48 +16,49 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-offset-3 col-xs-6">
-                    <nav class="navbar navbar-default">
-                        <div class="container-fluid">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand" href="#">Deathart.fr</a>
+                <div class="col-xs-8 offset-xs-2">
+                    <nav class="navbar navbar-light bg-faded" style="background-color: #556A7F;">
+                        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+                            &AElig;&#9776;
+                        </button>
+                        <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+                            <a class="navbar-brand" href="#">Navbar</a>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Features</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">About</a>
+                                </li>
+                            </ul>
+                            <form class="form-inline pull-xs-right">
+                                <input class="form-control" type="text" placeholder="Search">
+                                <button class="btn" type="submit">Search</button>
+                            </form>
+                            <div class="pull-xs-right lang_select">
+                                    <img data-lang="fr" src="<?php echo base_url(); ?>assets/images/lang/fr.png" />
+                                    <img data-lang="en" src="<?php echo base_url(); ?>assets/images/lang/en.png" />
+                                
                             </div>
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="#">Accueil <span class="sr-only">(current)</span></a></li>
-                                    <li><a href="#">C.V</a></li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Article <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="#">One more separated link</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="nav navbar-nav navbar-right">
-                                    <form class="navbar-form navbar-left" role="search">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Recherche">
-                                        </div>
-                                        <button type="submit" class="btn btn-default">Rechercher</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        </div>      
                     </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 offset-xs-3">
+                    <div class="flash_notif"></div>
                 </div>
             </div>
         </div>
         <div class="container-fluid" id="ContentJs">
             <div class="row">
-                <div class="col-xs-offset-1 col-xs-2">
+                <div class="col-xs-2 offset-xs-1">
                     <div id="BoxPrimary"> <!-- For menu ? : https://github.com/onokumus/metisMenu ??? -->
                         <div class="title">Menu</div>
                         <div class="content">
@@ -145,9 +146,9 @@
             </div>
         </div>
         <footer>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
-                    <div class="col-xs-offset-2 col-xs-8">
+                    <div class="col-xs-8 offset-xs-2">
                         <div class="footerContent">
                             <div class="pull-left">
                                 &copy Deathart.fr - <?php echo date('Y'); ?>
@@ -164,7 +165,7 @@
         <?php
         if (isset ( $includes_for_layout ['js'] ) and count ( $includes_for_layout ['js'] ) > 0) {
             foreach ( $includes_for_layout ['js'] as $js ) {
-                echo ('<script type="text/javascript" src="' . $js ['file'] . '"></script>');
+                echo ('<script type="text/javascript" src="' . $js ['file'] . '"></script>' . "\r\n");
             }
         }
         ?>

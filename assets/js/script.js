@@ -1,8 +1,31 @@
+function GetBaseUrl () {
+    return window.location.protocol + "//" + window.location.host + "/";
+}
+
+function GetLangCodeInLink () {
+    return window.location.pathname.split('/')[1];
+}
+
+function GetControllerName () {
+    return window.location.pathname.split('/')[2];
+}
+
+function GetActionName () {
+    return window.location.pathname.split('/')[3];
+}
+
+function GetSegment (num) {
+    return window.location.pathname.split('/')[num];
+}
+
+function GetTokenAPI () {
+    return $('.Token').text();
+}
+
 $(document).ready(function () {
     
-    var base_url = window.location.protocol + "//" + window.location.host + "/";
-    
-    var ajax_url = window.location.protocol + "//" + window.location.host + "/";
+    var base_url = GetBaseUrl(); // Get Base Url
+    var Token_Api = GetTokenAPI(); // Get Token API
     
     /* HEADER SCROLL */
     var scroll_start = 0;
@@ -14,6 +37,8 @@ $(document).ready(function () {
         $('.navbar').addClass("navbar-fixed-top");
     }
     
+    $(".lang_select").find('[data-lang="' + GetLangCodeInLink() + '"]').addClass('active'); 
+    
     $(document).scroll(function() { 
         scroll_start = $(this).scrollTop();
         if(scroll_start > scroll_offset.top) {
@@ -22,7 +47,6 @@ $(document).ready(function () {
             $('.navbar').removeClass("navbar-fixed-top");
         }
     });
-   
     /* HEADER SCROLL */
 
     /* FOOTER SCROLL */
@@ -54,7 +78,6 @@ $(document).ready(function () {
     /* RETURN TO TOP */
 
     /* LEFT MENU */
-    
     $("#nav li").hover(
     function(){
         $(this).children('ul').hide();
@@ -82,5 +105,30 @@ $(document).ready(function () {
                 
     });
     /* LEFT MENU */
+    
+    /* SET LANG */
+    $(".lang_select img").click(function(e) {
+        
+        e.stopPropagation();
+        var lang_select = $(this).data('lang');
+        console.log(lang_select);
+        
+        $(".flash_notif").html('<span style="color: orange;"><i class="fa_lang_select fa fa-spinner fa-spin fa-3x fa-fw"></i></span>');
+        
+        Cookies.set("lang_choise", lang_select);
+        
+        setTimeout(
+            function() {
+                $(".fa_lang_select").removeClass("fa-spinner fa-spin").addClass("fa-check").css("color", "green");
+                setTimeout(
+                    function() {
+                        location.reload(); 
+                    }
+                , 1500);
+            }
+        , 1500);
+
+    });
+    /* SET LANG */
     
 });

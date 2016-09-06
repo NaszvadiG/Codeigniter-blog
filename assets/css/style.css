@@ -20,7 +20,6 @@ ul#menu>li ul {
 ul#menu>li.active ul {
     display: block;
 }
-
 /* MENU ACCORDEON */
 
 /* BOX PRINCIPAL */
@@ -154,6 +153,33 @@ ul#menu>li.active ul {
 }
 /* PAGINATION */
 
+/* SET LANG */
+.lang_select {
+    display: block;
+    padding-top: .425rem;
+    padding-bottom: .425rem;
+    margin-right: 5px;
+}
+
+.lang_select > img {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.lang_select > img:hover {
+    moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset,0 0 0 1px rgba(255,255,255,0.05),0 1px 0 rgba(255,255,255,0.1);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset,0 0 0 1px rgba(255,255,255,0.05),0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,1) inset,0 0 0 1px rgba(255,255,255,0.05),0 1px 0 rgba(255,255,255,0.1);  
+}
+
+.lang_select > .active {
+    moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset,0 0 0 1px rgba(255,255,255,0.05),0 1px 0 rgba(255,255,255,0.1);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset,0 0 0 1px rgba(255,255,255,0.05),0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,1) inset,0 0 0 1px rgba(255,255,255,0.05),0 1px 0 rgba(255,255,255,0.1);
+}
+/* SET LANG */
+
 /* RETURN TO TOP */
 #back-to-top {
     position: fixed;
@@ -199,3 +225,15 @@ footer {
     padding-top: 1.5%;
 }
 /* FOOTER */
+
+/* OTHER */
+#ContentJs {
+    margin-top: 2%;
+}
+
+.flash_notif {
+    margin-top: 1%;
+    text-align: center;
+    margin-bottom: -3%;
+}
+/* OTHER */
