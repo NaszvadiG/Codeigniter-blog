@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteCond %{REQUEST_URI} ^system.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+    RewriteCond %{REQUEST_URI} ^application.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$1 [L]
+
+    AddDefaultCharset utf-8
+</IfModule>
+
+deny from 177.87.224.6
+deny from 176.67.200.51
+deny from 105.102.233.44
+deny from 177.43.23.44
+deny from 189.72.18.249
+deny from 186.226.4.60
+deny from 95.218.192.196
+deny from 90.78.1.65
+deny from 86.72.228.222
+deny from 24.135.239.112
+deny from 5.43.98.133

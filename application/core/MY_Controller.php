@@ -1,0 +1,145 @@
+<?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class MY_Controller extends CI_Controller {
+    
+    protected $langredirect = ['french', 'english'];
+
+    private $language = ['fr' => 'french', 'en' => 'english'];
+
+    public function __construct() {
+
+        parent::__construct ();
+
+        $this->data['NotifLastIPLog'] = false;
+
+        // CSS
+        $this->layout->add_includes('css', 'http://fonts.googleapis.com/css?family=Oswald:400,700,300', 1);
+        $this->layout->add_includes('css', 'assets/css/Framework/font-awesome.css');
+        $this->layout->add_includes('css', 'assets/css/Framework/bootstrap.css');
+        $this->layout->add_includes('css', 'assets/css/Framework/bootstrap-theme.css');
+        $this->layout->add_includes('css', 'assets/css/Framework/normalize.css');
+        $this->layout->add_includes('css', 'assets/css/style.css');
+        // JS
+        $this->layout->add_includes('js', 'assets/js/Library/jquery.js');
+        $this->layout->add_includes('js', 'assets/js/Library/bootstrap.js');
+        $this->layout->add_includes('js', 'assets/js/script.js');
+
+        // Set the version
+        $this->data['version'] = '<strong>1.0.0.0</strong> (CodeIgniter : <strong>' . CI_VERSION . '</strong>)';
+
+        // Vérification des bann's IP
+        if ($this->General_model->GetIpBanned($this->input->ip_address()) == TRUE) {
+            if ($this->uri->segment(3) != "Banned") {
+                redirect("Errors/Banned");
+            }
+        }
+
+        // Si l'utilisateur est connecter
+        if ($this->session->userdata('logged_in') == TRUE) {
+            // $this->data['GetNotifTotal'] = $this->GetNotif();
+        } else {
+            // $this->RememberMe();
+        }
+
+        // AutoLoad language
+        if (file_exists(APPPATH . 'language/' . $this->language [$this->lang->lang ()] . '/' . $this->uri->segment ( 2 ) . '.php')) {
+            $this->lang->load($this->uri->segment ( 2 ), '', '', FALSE);
+        }
+        
+        return TRUE;
+        
+    }
+    
+    protected function GetCSS () {
+        
+        $this->layout->add_includes('css', 'http://fonts.googleapis.com/css?family=Oswald:400,700,300', 1);
+        $this->layout->add_includes('css', 'assets/css/Framework/font-awesome.css');
+        $this->layout->add_includes('css', 'assets/css/Framework/bootstrap.css');
+        $this->layout->add_includes('css', 'assets/css/Framework/bootstrap-theme.css');
+        $this->layout->add_includes('css', 'assets/css/Framework/normalize.css');
+        $this->layout->add_includes('css', 'assets/css/style.css');
+        
+        return $this;
+        
+    }
+    
+    protected function GetJS () {
+        
+        /*
+        * Librairies
+        */
+        $this->layout->add_includes('js', 'assets/js/Library/jquery.js');
+        $this->layout->add_includes('js', 'assets/js/Library/bootstrap.js');
+        
+        /*
+         * Other
+         */
+        $this->layout->add_includes('js', 'assets/js/script.js');
+        
+        return $this;
+        
+    }
+    
+    protected function SetLang () {
+        
+        if ($this->uri->segment(1) !== FALSE) {
+            if ($this->uri->segment(2)) { 
+                if (file_exists(APPPATH . 'language/' . $this->language[$this->lang->lang()] . '/' . $this->uri->segment(2) . '.php')) {
+                    $this->lang->load($this->uri->segment(2), '', '', FALSE);
+                }
+            }
+            else {
+                if (file_exists(APPPATH . 'language/' . $this->language[$this->lang->lang()] . '/home.php')) {
+                    $this->lang->load("home", '', '', FALSE);
+                }
+            }
+        }
+        
+        
+        if (isset($_COOKIE["lang_choise"])) {
+            if ($this->uri->segment(1) !== FALSE) {
+                if ($this->uri->segment(1) != $_COOKIE["lang_choise"]) {
+                    $segment_to_replace = "/" . $this->uri->segment(1) . "/";
+                    $new_url = str_replace ($segment_to_replace, "/". $_COOKIE["lang_choise"] . "/", current_url());
+
+                    redirect ($new_url);
+                }
+            }
+        }
+        
+        return TRUE;
+        
+    }
+
+    protected function RememberMe() {
+
+        if (isset($_COOKIE["remember_me"])) {
+
+            $this->load->model('Auth_model');
+
+            $this->id = $_COOKIE["remember_me"];
+
+            $this->rank = $this->Auth_model->GetRank($this->id);
+            $this->rank_id = $this->Auth_model->GetRankId ($this->id);
+            $this->pseudo = $this->Account_model->RecupPseudo ($this->id);
+
+            $this->newdata = array(
+                'account_name' => ucfirst($this->pseudo),
+                'account_id' => $this->input->cookie('remember_me', true),
+                'account_gm_level' => $this->rank,
+                'account_gm_level_id' => $this->rank_id,
+                'account_ip' => $this->input->ip_address(),
+                'logged_in' => TRUE 
+            );
+
+            $this->session->set_userdata($this->newdata);
+
+            return redirect($this->uri->uri_string());
+            
+        }
+        
+    }
+        
+}
