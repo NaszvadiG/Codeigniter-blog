@@ -26,6 +26,7 @@ $(document).ready(function () {
     
     var base_url = GetBaseUrl(); // Get Base Url
     var Token_Api = GetTokenAPI(); // Get Token API
+    var FlashNotifDiv = $(".flash_notif");
     
     /* SCROLL */
     var scroll_start = 0;
@@ -133,18 +134,17 @@ $(document).ready(function () {
         var PseudoOrMail_Value = $("#InputUsernameOrMail").val();
         var Password_Value = $("#InputPassword").val();
         var SaveMe_Value = $("#SaveMeLogin").is(':checked') ? 1 : 0;
-        var notification_div = $(".flash_notif");
         var Choix_identifiant = 0; // 0 = Pseudo | 1 = Email
         var error_identifiant = true;
         var account_id = 0;
         
         console.info(SaveMe_Value);
         
-        notification_div.html("<div class=\"alert alert-info\" role=\"alert\">Chargement...</div>");
+        FlashNotifDiv.html("<div class=\"alert alert-info\" role=\"alert\">Chargement...</div>");
                 
         if (PseudoOrMail_Value || Password_Value) {
             
-            notification_div.html("<div class=\"alert alert-info\" role=\"alert\">Vérification des identifiants...</div>");
+            FlashNotifDiv.html("<div class=\"alert alert-info\" role=\"alert\">Vérification des identifiants...</div>");
             
             if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(PseudoOrMail_Value) === true) {
                 Choix_identifiant = 1;
@@ -164,20 +164,20 @@ $(document).ready(function () {
                                 data: {'password' : Password_Value, 'remember' : SaveMe_Value, 'account': JSON.parse(JSON.stringify(data)).AccountID, 'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
                                 success : function(data) {
                                     if(JSON.parse(JSON.stringify(data)).Result === 1) { // Mot de passe correct
-                                        notification_div.html("<div class=\"alert alert-success\" role=\"alert\">Connexion réussi, chargement en cours</div>");
+                                        FlashNotifDiv.html("<div class=\"alert alert-success\" role=\"alert\">Connexion réussi, chargement en cours</div>");
                                         setTimeout(function () { 
                                             location.reload(); 
                                         }, 3000);
                                     }
                                     else { // Mot de passe incorrect
-                                        notification_div.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de vérifier vos identifiant</div>");
+                                        FlashNotifDiv.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de vérifier vos identifiant</div>");
                                     }
                                 }
                             });
                             
                         }
                         else { // Identfiiant trouver
-                            notification_div.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de vérifier vos identifiant</div>");
+                            FlashNotifDiv.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de vérifier vos identifiant</div>");
                         }
                     }
                 });
@@ -195,20 +195,20 @@ $(document).ready(function () {
                                 data: {'password' : Password_Value, 'remember' : SaveMe_Value, 'account': JSON.parse(JSON.stringify(data)).AccountID, 'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
                                 success : function(data) {
                                     if(JSON.parse(JSON.stringify(data)).Result === 1) { // Mot de passe correct
-                                        notification_div.html("<div class=\"alert alert-success\" role=\"alert\">Connexion réussi, chargement en cours</div>");
+                                        FlashNotifDiv.html("<div class=\"alert alert-success\" role=\"alert\">Connexion réussi, chargement en cours</div>");
                                         setTimeout(function () { 
                                             location.reload(); 
                                         }, 3000);
                                     }
                                     else { // Mot de passe incorrect
-                                        notification_div.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de vérifier vos identifiant</div>");
+                                        FlashNotifDiv.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de vérifier vos identifiant</div>");
                                     }
                                 }
                             });
                             
                         }
                         else { // Identfiiant trouver
-                            notification_div.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de vérifier vos identifiant</div>");
+                            FlashNotifDiv.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de vérifier vos identifiant</div>");
                         }
                     }
                 });
@@ -216,7 +216,7 @@ $(document).ready(function () {
             
         }
         else {
-            notification_div.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de remplire les champs correctements</div>");
+            FlashNotifDiv.html("<div class=\"alert alert-danger\" role=\"alert\">Merci de remplire les champs correctements</div>");
         }
         
         return false;
@@ -225,7 +225,26 @@ $(document).ready(function () {
     /* LOGIN AUTH */
     
     /* LOGOUT AUTH */
-    
+    $(".pointerLogout").click(function() {
+        
+        FlashNotifDiv.html("<div class=\"alert alert-info\" role=\"alert\">Chargement...</div>");
+        
+        $(this).parent("li").html("<span><i class=\"fa fa-spinner fa-spin\"></i></span>");
+        
+        $.ajax({
+            type: "POST",
+            url: GetBaseUrl() + "API/SetLogout",
+            data: {'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+            success : function(data) {
+                if(JSON.parse(JSON.stringify(data)).Result === 1) {
+                    FlashNotifDiv.html("<div class=\"alert alert-success\" role=\"alert\">Deconnexion réussi, chargement en cours</div>");
+                    setTimeout(function () { 
+                        location.reload(); 
+                    }, 3000);
+                }
+            }
+        });
+    });
     /* LOGOUT AUTH */
     
 });

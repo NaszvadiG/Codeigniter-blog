@@ -66,6 +66,20 @@ class API extends CI_Controller {
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
     
+    public function SetLogout () {
+        
+        $this->load->helper('cookie');
+        
+        delete_cookie("remember_me");
+        
+        $this->session->sess_destroy();
+        
+        $this->array = $this->GetInfo();
+        $this->array["Result"] = 1;
+        
+        return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
+    }
+    
     private function SetSession ($account, $remember) {
         
         $this->DataSession = [
