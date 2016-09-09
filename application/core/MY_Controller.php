@@ -32,11 +32,14 @@ class MY_Controller extends CI_Controller {
             }
         }
 
+        if (($this->session->userdata('logged_in') === FALSE) && (isset($_COOKIE["remember_me"]))) {
+            $this->RememberMe();
+        }
+        
         // Si l'utilisateur est connecter
         if ($this->session->userdata('logged_in') == TRUE) {
-            // $this->data['GetNotifTotal'] = $this->GetNotif();
-        } else {
-            // $this->RememberMe();
+            //$this->data['GetNotifTotal'] = $this->GetNotif();
+            //$this->SetLastActivity
         }
 
         // AutoLoad language
@@ -119,30 +122,20 @@ class MY_Controller extends CI_Controller {
 
     protected function RememberMe() {
 
-        if (isset($_COOKIE["remember_me"])) {
+        $this->load->model('Auth_model');
 
-            $this->load->model('Auth_model');
+        $this->newdata = [
+            'account_id' => $this->input->cookie('remember_me', true),
+            'account_name' => $this->Auth_model->GetUsername($this->input->cookie('remember_me', true)),
+            'account_ip' => $this->input->ip_address(),
+            'logged_in' => TRUE 
+        ];
 
-            $this->id = $_COOKIE["remember_me"];
+        $this->session->set_userdata($this->newdata);
 
-            $this->rank = $this->Auth_model->GetRank($this->id);
-            $this->rank_id = $this->Auth_model->GetRankId ($this->id);
-            $this->pseudo = $this->Account_model->RecupPseudo ($this->id);
+        redirect($this->uri->uri_string());
 
-            $this->newdata = array(
-                'account_name' => ucfirst($this->pseudo),
-                'account_id' => $this->input->cookie('remember_me', true),
-                'account_gm_level' => $this->rank,
-                'account_gm_level_id' => $this->rank_id,
-                'account_ip' => $this->input->ip_address(),
-                'logged_in' => TRUE 
-            );
-
-            $this->session->set_userdata($this->newdata);
-
-            return redirect($this->uri->uri_string());
-            
-        }
+        return TRUE;
         
     }
         
