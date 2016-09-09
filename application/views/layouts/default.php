@@ -38,8 +38,8 @@
                                 </li>
                             </ul>
                             <form class="form-inline pull-xs-right">
-                                <input class="form-control" type="text" placeholder="Search">
-                                <button class="btn" type="submit">Search</button>
+                                <input class="form-control" type="text" placeholder="Recherche">
+                                <button class="btn" type="submit">Recherche</button>
                             </form>
                             <div class="pull-xs-right lang_select">
                                     <img data-lang="fr" src="<?php echo base_url(); ?>assets/images/lang/fr.png" />
@@ -120,6 +120,12 @@
                     <div id="BoxPrimary">
                         <div class="title">Compte</div>
                         <div class="content">
+                            <?php if ($this->session->userdata('logged_in') == TRUE) { ?>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-info"><a href="#">Information du compte</a></li>
+                                <li class="list-group-item list-group-item-error"><span class="pointerLogout">Logout</span></li>
+                            </ul>
+                            <?php } else { ?>
                             <form id="LoginRight">
                                 <div class="form-group">
                                     <label for="InputUsernameOrMail">Pseudo uu Email</label> 
@@ -140,6 +146,8 @@
                                 <li class="list-group-item list-group-item-warning"><a href="#">Mot de passe oublié ?</a></li>
                                 <li class="list-group-item list-group-item-info"><a href="#">Inscription !</a></li>
                             </ul>
+                            
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
