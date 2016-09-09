@@ -100,7 +100,7 @@ $(document).ready(function () {
         }
         else {
             //$(this).parent(-1).find("li#actif").slideUp(200);
-            $(this).parent().children("ul").attr("id", "");
+            $(this).parent().children("ul").attr("id", "").slideDown(200);
         }
                 
     });
