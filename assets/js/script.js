@@ -73,32 +73,8 @@ $(document).ready(function () {
     /* SCROLL */
 
     /* LEFT MENU */
-    $("#nav li").hover(
-    function(){
-        $(this).children('ul').hide();
-        $(this).children('ul').slideDown('fast');
-    },
-    function () {
-        $('ul', this).slideUp('fast');            
-    });
-    
-    $('ul#menu li a').click(function (){
-        
-        var cible = $(this).parent().children("ul");
-        //$("ul#menu li ul").not($("ul#menu li ul").parent("ul")).slideUp(200)
-        //$("ul#menu li ul").slideUp(200);
-        if ($(this).parent().attr("id") != "actif") {
-            $(this).parent().attr("id", "actif");
-            if (!cible.is(":visible")) {
-                cible.slideDown(200);
-            }
-        }
-        else {
-            //$(this).parent(-1).find("li#actif").slideUp(200);
-            $(this).parent().children("ul").attr("id", "").slideDown(200);
-        }
-                
-    });
+    /* https://github.com/onokumus/metisMenu */
+    $("#menu").metisMenu();
     /* LEFT MENU */
     
     /* SET LANG */

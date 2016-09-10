@@ -59,43 +59,48 @@
         <div class="container-fluid" id="ContentJs">
             <div class="row">
                 <div class="col-xs-2 offset-xs-1">
-                    <div id="BoxPrimary"> <!-- For menu ? : https://github.com/onokumus/metisMenu ??? -->
+                    <div id="BoxPrimary">
                         <div class="title">Menu</div>
                         <div class="content">
-                            <ul id="menu">
-                                <li class="active"><a href="#">Menu 0 <span class="fa arrow"></span></a>
-                                <ul>
-                                    <li><a href="#">item 0.1</a></li>
-                                    <li><a href="#">item 0.2</a></li>
-                                    <li><a href="http://onokumus.com">onokumus</a></li>
-                                    <li><a href="#">item 0.4</a></li>
-                                </ul>
+                            <ul class="metismenu" id="menu">
+                                <li class="active">
+                                    <a href="#" aria-expanded="true">Menu 0 <span class="fa arrow fa-fw"></span></a>
+                                    <ul style="" class="collapse in" aria-expanded="true">
+                                        <li><a href="#">item 0.1</a></li>
+                                        <li><a href="#">item 0.2</a></li>
+                                        <li><a href="http://onokumus.com">onokumus</a></li>
+                                        <li><a href="#">item 0.4</a></li>
+                                    </ul>
                                 </li>
-                                <li>
-                                    <a href="#">Menu 1 <span class="glyphicon arrow"></span></a>
-                                    <ul>
+                                <li class="">
+                                    <a href="#" aria-expanded="true">Menu 1 <span class="fa arrow fa-fw"></span></a>
+                                    <ul style="height: 0px;" class="collapse" aria-expanded="false">
                                         <li><a href="#">item 1.1</a></li>
                                         <li><a href="#">item 1.2</a></li>
-                                        <li>
-                                            <a href="#">Menu 1.3 <span class="fa plus-times"></span></a>
-                                            <ul>
-                                                <li><a href="#">item 1.1</a></li>
-                                                <li><a href="#">item 1.2</a></li>
+                                        <li class="">
+                                            <a href="#" aria-expanded="true">Menu 1.3 <span class="fa arrow fa-fw"></span></a>
+                                            <ul style="height: 0px;" class="collapse" aria-expanded="false">
+                                                <li><a href="#">item 1.3.1</a></li>
+                                                <li><a href="#">item 1.3.2</a></li>
+                                                <li><a href="#">item 1.3.3</a></li>
+                                                <li><a href="#">item 1.3.4</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">item 1.4</a></li>
                                         <li>
-                                            <a href="#">Menu 1.5 <span class="fa plus-minus"></span></a>
-                                            <ul>
-                                                <li><a href="#">item 1.1</a></li>
-                                                <li><a href="#">item 1.2</a></li>
+                                            <a href="#" aria-expanded="true">Menu 1.5 <span class="fa arrow fa-fw"></span></a>
+                                            <ul style="" class="collapse" aria-expanded="false">
+                                                <li><a href="#">item 1.5.1</a></li>
+                                                <li><a href="#">item 1.5.2</a></li>
+                                                <li><a href="#">item 1.5.3</a></li>
+                                                <li><a href="#">item 1.5.4</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#">Menu 2 <span class="glyphicon arrow"></span></a>
-                                    <ul>
+                                    <a href="#" aria-expanded="false">Menu 2 <span class="fa arrow fa-fw"></span></a>
+                                    <ul class="collapse" aria-expanded="false">
                                         <li><a href="#">item 2.1</a></li>
                                         <li><a href="#">item 2.2</a></li>
                                         <li><a href="#">item 2.3</a></li>

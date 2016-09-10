@@ -79,6 +79,7 @@ class MY_Controller extends CI_Controller {
         $this->layout->add_includes('js', 'assets/js/Helper/lang.js');
         $this->layout->add_includes('js', 'assets/js/Helper/cookie.js');
         $this->layout->add_includes('js', 'assets/js/Helper/Consol.js');
+        $this->layout->add_includes('js', 'assets/js/Helper/metisMenu.js');
         
         /*
          * Other
