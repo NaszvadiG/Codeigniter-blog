@@ -31,14 +31,13 @@ class MY_Controller extends CI_Controller {
                 redirect("Errors/Banned");
             }
         }
-
-        if (($this->session->userdata('logged_in') === FALSE) && (isset($_COOKIE["remember_me"]))) {
-            $this->RememberMe();
+        if (($this->session->userdata('logged_in') === FALSE) && ($this->input->cookie('remember_me', TRUE) !== NULL)) {
+            $this->RememberMe($this->input->cookie('remember_me', true));
         }
         
         // Si l'utilisateur est connecter
         if ($this->session->userdata('logged_in') == TRUE) {
-            //$this->data['GetNotifTotal'] = $this->GetNotif();
+            $this->data['GetNotifTotal'] = $this->GetNotif();
             //$this->SetLastActivity
         }
 
@@ -89,6 +88,10 @@ class MY_Controller extends CI_Controller {
         
     }
     
+    protected function GetNotif () {
+        
+    }
+    
     protected function SetLang () {
         
         if ($this->uri->segment(1) !== FALSE) {
@@ -120,13 +123,13 @@ class MY_Controller extends CI_Controller {
         
     }
 
-    protected function RememberMe() {
+    protected function RememberMe($account) {
 
         $this->load->model('Auth_model');
 
         $this->newdata = [
-            'account_id' => $this->input->cookie('remember_me', true),
-            'account_name' => $this->Auth_model->GetUsername($this->input->cookie('remember_me', true)),
+            'account_id' => $account,
+            'account_name' => $this->Auth_model->GetUsername($account),
             'account_ip' => $this->input->ip_address(),
             'logged_in' => TRUE 
         ];
