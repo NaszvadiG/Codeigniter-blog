@@ -28,26 +28,13 @@ $(document).ready(function () {
     var Token_Api = GetTokenAPI(); // Get Token API
     var FlashNotifDiv = $(".flash_notif");
     
+    $(".lang_select").find('[data-lang="' + GetLangCodeInLink() + '"]').addClass('active'); 
+    
     /* SCROLL */
     var scroll_start = 0;
     var scroll_idchange = $('#ContentJs');
     var scroll_offset = scroll_idchange.offset();
     var scroll_actual = $(document).scrollTop().valueOf();
-    
-    if (scroll_actual >= 70) {
-        $('.navbar').addClass("navbar-fixed-top");
-    }
-    
-    $(".lang_select").find('[data-lang="' + GetLangCodeInLink() + '"]').addClass('active'); 
-    
-    $(document).scroll(function() { 
-        scroll_start = $(this).scrollTop();
-        if(scroll_start > scroll_offset.top) {
-            $('.navbar').addClass("navbar-fixed-top");
-        } else {
-            $('.navbar').removeClass("navbar-fixed-top");
-        }
-    });
     
     if ($('#back-to-top').length) {
         var scrollTrigger = 100, // px
@@ -73,8 +60,15 @@ $(document).ready(function () {
     /* SCROLL */
 
     /* LEFT MENU */
-    /* https://github.com/onokumus/metisMenu */
-    $("#menu").metisMenu();
+    $(".menu").click(function() {
+        
+        var sousmenu_id = $(this).data("menu");
+        
+        $(".sousmenugeneral").not("#" + sousmenu_id).not(".active").slideUp("slow");
+        
+        $("#" + sousmenu_id).not(".active").slideToggle("slow");
+        
+    });
     /* LEFT MENU */
     
     /* SET LANG */

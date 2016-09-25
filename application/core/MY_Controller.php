@@ -54,9 +54,8 @@ class MY_Controller extends CI_Controller {
     protected function GetCSS () {
         
         $this->layout->add_includes('css', 'http://fonts.googleapis.com/css?family=Oswald:400,700,300', 1);
-        $this->layout->add_includes('css', 'assets/css/Framework/font-awesome.css');
-        $this->layout->add_includes('css', 'assets/css/Framework/bootstrap.css');
-        //$this->layout->add_includes('css', 'assets/css/Framework/bootstrap-theme.css');
+        $this->layout->add_includes('css', 'assets/css/font-awesome.css');
+        $this->layout->add_includes('css', 'assets/css/bootstrap.css');
         $this->layout->add_includes('css', 'assets/css/style.css');
         
         return $this;
