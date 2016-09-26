@@ -105,10 +105,14 @@
                 <div class="right_menu">
                     <div id="BoxPrimary">
                         <div class="header">Mon compte</div>
-                        <?php if ($this->session->userdata('logged_in') == TRUE) { ?>
-                        LOGED
-                        <?php } else { ?>
                         <div class="contentain">
+                        <?php if ($this->session->userdata('logged_in') == TRUE) { ?>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-info"><a href="#">Mon compte</a></li>
+                                <li class="list-group-item list-group-item-warning"><a href="#">Ma messagerie</a></li>
+                                <li class="list-group-item list-group-item-error"><span class="pointerLogout">Deconnexion</span></li>
+                            </ul>
+                        <?php } else { ?>
                             <form id="LoginRight">
                                 <div class="form-group">
                                     <label for="InputUsernameOrMail">Pseudo ou Email</label> 
@@ -129,8 +133,8 @@
                                 <li class="list-group-item list-group-item-warning"><a href="#">Mot de passe oublié ?</a></li>
                                 <li class="list-group-item list-group-item-info"><a href="#">Inscription !</a></li>
                             </ul>
-                        </div>
                         <?php } ?>
+                        </div>
                     </div>
                     <div id="BoxPrimary">
                         <div class="header">test</div>

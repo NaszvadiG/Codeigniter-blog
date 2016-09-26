@@ -1780,6 +1780,18 @@ body {
     max-width: 100%;
   }
 }
+.right_menu .pointerLogout {
+  cursor: pointer;
+  color: #0275d8;
+}
+.right_menu .pointerLogout:focus {
+  color: #014c8c;
+  text-decoration: underline;
+}
+.right_menu .pointerLogout:hover {
+  color: #014c8c;
+  text-decoration: underline;
+}
 
 @media only screen and (min-width: 768px) {
   .footer {
