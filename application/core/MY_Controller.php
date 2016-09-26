@@ -31,7 +31,7 @@ class MY_Controller extends CI_Controller {
                 redirect("Errors/Banned");
             }
         }
-        if (($this->session->userdata('logged_in') === FALSE) && ($this->input->cookie('remember_me', TRUE) !== NULL)) {
+        if (($this->session->userdata('logged_in') == FALSE) && ($this->input->cookie('remember_me', TRUE) != NULL)) {
             $this->RememberMe($this->input->cookie('remember_me', true));
         }
         
@@ -94,7 +94,7 @@ class MY_Controller extends CI_Controller {
     
     protected function SetLang () {
         
-        if ($this->uri->segment(1) !== FALSE) {
+        if ($this->uri->segment(1) != FALSE) {
             if ($this->uri->segment(2)) { 
                 if (file_exists(APPPATH . 'language/' . $this->language[$this->lang->lang()] . '/' . $this->uri->segment(2) . '.php')) {
                     $this->lang->load($this->uri->segment(2), '', '', FALSE);
@@ -109,7 +109,7 @@ class MY_Controller extends CI_Controller {
         
         
         if (isset($_COOKIE["lang_choise"])) {
-            if ($this->uri->segment(1) !== FALSE) {
+            if ($this->uri->segment(1) != FALSE) {
                 if ($this->uri->segment(1) != $_COOKIE["lang_choise"]) {
                     $segment_to_replace = "/" . $this->uri->segment(1) . "/";
                     $new_url = str_replace ($segment_to_replace, "/". $_COOKIE["lang_choise"] . "/", current_url());

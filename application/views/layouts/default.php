@@ -142,7 +142,7 @@
         <nav class="navbar navbar-fixed-bottom navbar-light bg-faded footer">
             <a class="navbar-brand" href="#">© Deathart.fr - <?php echo date('Y'); ?></a>
             <div class="pull-right">
-                Page rendered in <strong>{elapsed_time}</strong> seconds - <?php //echo $version; ?>
+                Page rendered in <strong>{elapsed_time}</strong> seconds - <?php echo $version; ?>
             </div>
         </nav>
         <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
