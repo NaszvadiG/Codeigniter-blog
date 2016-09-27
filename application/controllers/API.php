@@ -38,6 +38,12 @@ class API extends CI_Controller {
         
     }
     
+    public function GetUsernameByID () {
+        $this->array = $this->GetInfo();
+        $this->array["AccountUsername"] = $this->Auth_model->GetUsername($_POST['accountID']);
+        return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
+    }
+    
     public function GetEmailExists () {
         
         $this->array = $this->GetInfo();
@@ -106,6 +112,27 @@ class API extends CI_Controller {
         return TRUE;
     }
     
+    /* CHATBOX */
+    
+    /**
+     * 
+     * Get all message of chatbox in AJAX
+     * 
+     * @return string
+     */
+    public function GetChatbox () {
+        $this->array = $this->GetInfo();
+        $this->array['chatbox'] = $this->General_model->get_message_chatbox();
+        return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
+    }
+    /* CHATBOX */
+    
+    /**
+     * 
+     * Get JSON info
+     * 
+     * @return string
+     */
     private function GetInfo () {
         
         return ["API version" => "v1", "token" => $this->security->get_csrf_hash()];

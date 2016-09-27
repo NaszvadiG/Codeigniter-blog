@@ -217,4 +217,59 @@ $(document).ready(function () {
     });
     /* LOGOUT AUTH */
     
+    /* CHATBOX */
+    //<span>Deathart</span> (27/09/2017 à 13h44) : Message test
+    function addMessages(json) {
+
+        $.each(json, function(i,val){
+            $(".message ul").append("<li><span>" + GetUsernameByID(val.user) + "</span> (" + val.time + "): " + val.msg + "</li>");				
+        });
+        
+    }
+    
+    $.ajax({
+        type: "POST",
+        url: GetBaseUrl() + "API/GetChatbox",
+        data: {'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+        success : function(data) {
+            $("#loading").remove();
+            addMessages(data.chatbox);
+        }
+    });
+    /* CHATBOX */
+    
+    /* REPLACE */
+    $('body').find("[data-user]").each(function(){
+        
+        var replace_account_ID = $(this).data('user');
+        
+        var replace_account_text = $(this).html();
+        
+        console.log(GetUsernameByID(replace_account_ID));
+        
+        $(this).html(replace_account_text.replace("%s", GetUsernameByID(replace_account_ID)));
+        
+    });
+    /* REPLACE */
+    
+    /* FUNCTION */
+    function GetUsernameByID (id) {
+        var username = "";
+        $.ajax({
+            type: "POST",
+            url: GetBaseUrl() + "API/GetUsernameByID",
+            data: {'accountID' : id, 'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+            async: false,
+            success : function(data) {
+                username = data.AccountUsername;
+            },
+            error: function(err) {
+                username = "Account not found";
+            }
+        });
+        console.log(username)
+        return username;
+    }
+    /* FUNCTION */
+    
 });

@@ -7,7 +7,7 @@ if ($GetListeNews != null) {
     <div class="news_home_header"><?php echo $value['titre']; ?></div>
     <div class="news_home_content">
         <div class="info">
-            Par <span>deathart</span> / Le <span>17/05/2016</span> à <span>15h20</span>
+            Par <span data-user="<?php echo $value['author']; ?>">%s</span> / <?php echo $value['date_created']; ?>
         </div>
         <div class="contentainer">
             <div class="screen">

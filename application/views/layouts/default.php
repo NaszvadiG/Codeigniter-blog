@@ -100,9 +100,7 @@
                         <div class="content">
                             <div class="message">
                                 <ul>
-                                    <li><span>Deathart</span> (27/09/2017 à 13h44) : Message test</li>
-                                    <li><span>Deathart</span> (27/09/2017 à 13h44) : Message test</li>
-                                    <li><span>Deathart</span> (27/09/2017 à 13h44) : Message test</li>
+                                    <li><span id="loading">Loading...</span></li>
                                 </ul>
                             </div>
                             <form class="form-inline">

@@ -20,6 +20,7 @@ class Home_model extends CI_Model {
     public function GetNewsliste ($limit, $start) {
         
         $this->db->limit($limit, $start);
+        $this->db->select("*, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_created'");
         $this->query = $this->db->get_where($this->table_news, ["active" => "1"]);
 
         if ($this->query->num_rows() > 0) {
