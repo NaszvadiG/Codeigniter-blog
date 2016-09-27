@@ -1,7 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed'); 
-
-foreach ($GetListeNews as $value) { 
+if ($GetListeNews != null) {
+    foreach ($GetListeNews as $value) { 
     ?>
 <div class="news_home">
     <div class="news_home_header"><?php echo $value['titre']; ?></div>
@@ -36,3 +36,4 @@ foreach ($GetListeNews as $value) {
         <?php echo $this->pagination->create_links(); ?>
     </div>
 </div>
+<?php } ?>

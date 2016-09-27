@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `chatbox` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `user` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `msg` text CHARACTER SET latin1 NOT NULL,
+  `time` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
