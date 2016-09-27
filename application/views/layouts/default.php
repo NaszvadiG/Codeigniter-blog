@@ -95,6 +95,22 @@
                 </div>
                 <div class="center_content">
                     <div class="flash_notif"></div>
+                    <div id="Chatbox">
+                        <div class="header">Chatbox</div>
+                        <div class="content">
+                            <div class="message">
+                                <ul>
+                                    <li><span>Deathart</span> (27/09/2017 à 13h44) : Message test</li>
+                                    <li><span>Deathart</span> (27/09/2017 à 13h44) : Message test</li>
+                                    <li><span>Deathart</span> (27/09/2017 à 13h44) : Message test</li>
+                                </ul>
+                            </div>
+                            <form class="form-inline">
+                                <input class="form-control Chatbox_Message" placeholder="Message" type="text" />
+                                <button type="submit" class="btn btn-primary Chatbox_Input">Envoyez</button>
+                            </form>
+                        </div>
+                    </div>
                     <ol class="breadcrumb">
                         <?php echo $breadcrumbs; ?>
                     </ol>

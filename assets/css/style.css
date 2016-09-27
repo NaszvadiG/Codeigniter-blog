@@ -1743,20 +1743,78 @@ body {
   margin-bottom: 1%;
   text-align: center;
 }
-.center_content .breadcrumb {
-  margin-top: -1%;
-  background: #01B0F0;
+@media only screen and (min-width: 768px) {
+  .center_content #Chatbox {
+    margin-top: -1%;
+  }
 }
-.center_content .breadcrumb-item {
+@media (max-width: 768px) {
+  .center_content #Chatbox {
+    margin-top: 1%;
+  }
+}
+.center_content #Chatbox .header {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: #01B0F0;
+  padding: 5px;
+  font-size: x-large;
   font-weight: bold;
 }
-.center_content .breadcrumb-item a {
+.center_content #Chatbox .content {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-left: 1px solid #01B0F0;
+  border-bottom: 1px solid #01B0F0;
+  border-right: 1px solid #01B0F0;
+  background-color: white;
+  padding: 5px;
+  height: 200px;
+  position: relative;
+}
+.center_content #Chatbox .content .message {
+  height: 140px;
+  overflow-y: scroll;
+}
+.center_content #Chatbox .content .message ul {
+  padding-left: 0;
+  list-style: none;
+}
+.center_content #Chatbox .content .message ul li span {
+  font-weight: bold;
+}
+.center_content #Chatbox .content .form-inline {
+  border-top: 1px solid #01B0F0;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: -0.5%;
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+}
+.center_content #Chatbox .content .form-inline .Chatbox_Message {
+  width: 90%;
+}
+.center_content #Chatbox .content .form-inline .Chatbox_Input {
+  float: right;
+  width: 9%;
+  padding-left: 1%;
+}
+.center_content .breadcrumb {
+  margin-top: 1%;
+  background: #01B0F0;
+}
+.center_content .breadcrumb .breadcrumb-item {
+  font-weight: bold;
+}
+.center_content .breadcrumb .breadcrumb-item a {
   color: white;
 }
-.center_content .breadcrumb-item + .breadcrumb-item::before {
+.center_content .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
   color: black;
 }
-.center_content .breadcrumb-item.active {
+.center_content .breadcrumb .breadcrumb-item.active {
   color: black;
 }
 

@@ -147,27 +147,103 @@ body {
         text-align: center;
     }
     
-    .breadcrumb {
-        margin-top: -1%;
-        background: $color-primary_blue;
-    }
-    .breadcrumb-item {
-        font-weight: bold;
+    #Chatbox {
         
-        a {
-            color: white;
+        @media only screen and (min-width: 768px) {
+            margin-top: -1%;
         }
-
-        + .breadcrumb-item::before {
-            color: black;
-        }
-
-        &.active {
-            color: black;
+        
+        @media (max-width: 768px) {
+            margin-top: 1%;
         }
     
+        .header {
+            @include border-top-radius(5px);
+            background-color: $color-primary_blue;
+            padding: 5px;
+            font-size: x-large;
+            font-weight: bold;
+        }
+        
+        .content {
+            
+            @include border-bottom-radius(5px);
+            border-left: 1px solid $color-primary_blue;
+            border-bottom: 1px solid $color-primary_blue;
+            border-right: 1px solid $color-primary_blue;
+            background-color: white;
+            padding: 5px;
+            height: 200px;
+            position: relative;
+            
+            .message {
+                
+                height: 140px;
+                overflow-y: scroll;
+                
+                ul {
+                    padding-left: 0;
+                    list-style: none;
+                    li {
+                        span {
+                            font-weight: bold;
+                        }
+                    }
+                }
+                
+            }
+            
+            .form-inline {
+                
+                border-top: 1px solid $color-primary_blue;
+                padding-top: 5px;
+                padding-left: 5px;
+                padding-right: 5px;
+                margin-left: -0.5%;
+                position: absolute;
+                bottom: 5px;
+                width: 100%;
+                
+                .Chatbox_Message {
+                    
+                    width: 90%;
+                    
+                }
+                
+                .Chatbox_Input {
+                    float: right;
+                    width: 9%;
+                    padding-left: 1%;
+                }
+                
+            }
+            
+        }
+        
     }
+    
+    .breadcrumb {
+        
+        margin-top: 1%;
+        background: $color-primary_blue;
+    
+        .breadcrumb-item {
+            font-weight: bold;
 
+            a {
+                color: white;
+            }
+
+            + .breadcrumb-item::before {
+                color: black;
+            }
+
+            &.active {
+                color: black;
+            }
+
+        }
+    }
 }
 
 .right_menu {
