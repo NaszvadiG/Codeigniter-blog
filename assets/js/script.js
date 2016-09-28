@@ -234,7 +234,7 @@ $(document).ready(function () {
                     
                     $(".Chatbox_Message").val("");
                     //addMessages(data.chatbox);
-                    $(".message ul").prepend("<li>Par <span>" + GetUsernameByID(data.chatbox.user) + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
+                    $(".message ul").prepend("<li>Par <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
                     
                 }
             });
@@ -245,7 +245,7 @@ $(document).ready(function () {
     function addMessages(json) {
 
         $.each(json, function(i,val){
-            $(".message ul").append("<li>Par <span>" + GetUsernameByID(val.user) + "</span> (" + val.time + "): " + val.msg + "</li>");				
+            $(".message ul").append("<li>Par <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");		
         });
         
     }
@@ -254,6 +254,7 @@ $(document).ready(function () {
         type: "POST",
         url: GetBaseUrl() + "API/GetChatbox",
         data: {'token_data' : $('.Token').text(), 'token_name' : 'token_rencontre', 'token_rencontre' : $('.Token').text()},
+        async: true,
         success : function(data) {
             $("#loading").remove();
             addMessages(data.chatbox);
@@ -264,32 +265,29 @@ $(document).ready(function () {
     /* REPLACE */
     $('body').find("[data-user]").each(function(){
         
+        var replace_this = $(this);
         var replace_account_ID = $(this).data('user');
-        
         var replace_account_text = $(this).html();
-        
-        $(this).html(replace_account_text.replace("%s", GetUsernameByID(replace_account_ID)));
+
+        ReplaceUser(replace_account_ID, replace_account_text, replace_this);
         
     });
-    /* REPLACE */
     
-    /* FUNCTION */
-    function GetUsernameByID (id) {
-        var username = "";
+    function ReplaceUser (user, text, id) {
+        
         $.ajax({
             type: "POST",
             url: GetBaseUrl() + "API/GetUsernameByID",
-            data: {'accountID' : id, 'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
-            async: false,
+            data: {'accountID' : user, 'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+            async: true,
             success : function(data) {
-                username = data.AccountUsername;
+                id.html(text.replace("%s", data.AccountUsername));
             },
             error: function(err) {
-                username = "Account not found";
+                id.html(text.replace("%s", "Account not found"));
             }
         });
-        return username;
+        
     }
-    /* FUNCTION */
-    
+    /* REPLACE */
 });

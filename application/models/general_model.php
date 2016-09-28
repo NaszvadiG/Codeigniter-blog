@@ -36,7 +36,7 @@ class General_model extends CI_Model {
      * @return string
      */
     public function get_message_chatbox ($limit = 100) {	
-	return $this->db->query("SELECT *, DATE_FORMAT(`time`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'time' FROM chatbox ORDER BY id DESC LIMIT $limit")->result_array();
+	return $this->db->query("SELECT *, DATE_FORMAT(`time`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'time', username FROM chatbox LEFT JOIN users ON users.id = chatbox.user ORDER BY chatbox.id DESC LIMIT $limit")->result_array();
     }
     
     public function add_message_chatbox ($message, $author) {
