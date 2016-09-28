@@ -245,8 +245,6 @@ $(document).ready(function () {
         
         var replace_account_text = $(this).html();
         
-        console.log(GetUsernameByID(replace_account_ID));
-        
         $(this).html(replace_account_text.replace("%s", GetUsernameByID(replace_account_ID)));
         
     });
@@ -267,7 +265,6 @@ $(document).ready(function () {
                 username = "Account not found";
             }
         });
-        console.log(username)
         return username;
     }
     /* FUNCTION */

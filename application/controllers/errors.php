@@ -4,13 +4,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Errors extends MY_Controller {
     
-    protected $data = [];
+    public $data = [];
     
     public $title_for_layout, $breadcrumbs;
 
     public function __construct() {
 
         parent::__construct ();
+        
+        $this->title_spage = "Error";
 
         $this->lang->load("Errors", '', '', FALSE);
 

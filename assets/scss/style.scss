@@ -414,3 +414,44 @@ body {
     }
     
 }
+
+#news {
+    @include make-col-ready();
+    @include make-col(12);
+    
+    .news_header {
+        @include border-top-radius(5px);
+        background-color: $color-primary_blue;
+        padding: 5px;
+        font-size: x-large;
+        font-weight: bold;
+    }
+    
+    .news_content {
+        @include border-bottom-radius(5px);
+        border-left: 1px solid $color-primary_blue;
+        border-bottom: 1px solid $color-primary_blue;
+        border-right: 1px solid $color-primary_blue;
+        background-color: white;
+        
+        .info {
+            font-weight: bold;
+            font-size: 12px;
+            background-color: white;
+            color: #0275d8;
+            padding-left: 5px;
+            border-bottom: 1px solid $color-primary_blue;
+            
+            span {
+                color: $color-primary_blue;
+            }
+            
+        }
+        
+        .text {
+            padding: 5px;
+        }
+        
+    }
+    
+}

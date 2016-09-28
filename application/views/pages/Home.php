@@ -22,7 +22,7 @@ if ($GetListeNews != null) {
                 }
                 ?>
                 <div class="show_more">
-                    <a href="#">
+                    <a href="<?php base_url(); ?>Home/News/<?php echo $value['id']; ?>">
                         Lire la suite
                     </a>
                 </div>

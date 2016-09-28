@@ -60,12 +60,12 @@ class Layout {
         }
         else {
             
-            $this->data_breadcrumbs = ('<li><a href="' . base_url() . 'Home"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a></li>');
+            $this->data_breadcrumbs = ('<li class="breadcrumb-item"><a href="' . base_url() . 'Home"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a></li>');
             
-            $this->data_breadcrumbs .= ('<li><a href="' . base_url() . $this->ci->uri->segment(2) . '">' . $this->ci->title_for_layout . '</a></li>');
+            $this->data_breadcrumbs .= ('<li class="breadcrumb-item"><a href="' . base_url() . $this->ci->uri->segment(2) . '">' . $this->ci->title_for_layout . '</a></li>');
             
             if($this->ci->uri->segment(3) == TRUE && $this->ci->title_spage != FALSE) {
-                $this->data_breadcrumbs .= ('<li>' . $this->ci->title_spage . '</li>');
+                $this->data_breadcrumbs .= ('<li class="breadcrumb-item active">' . $this->ci->title_spage . '</li>');
             }
             
         }

@@ -33,4 +33,10 @@ class Home_model extends CI_Model {
         
     }
     
+    public function GetNews ($id) {
+        
+        return $this->db->query("SELECT *, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') FROM " . $this->table_news . " WHERE id='".$id."'")->row();
+        
+    }
+    
 }

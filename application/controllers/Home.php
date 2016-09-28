@@ -17,6 +17,10 @@ class Home extends MY_Controller {
 
     }
 
+    /**
+     * 
+     * @return string
+     */
     public function index() {
 
         $this->title_for_layout = ('Accueil');
@@ -56,6 +60,34 @@ class Home extends MY_Controller {
 
         return $this->layout->view ('pages/Home', $this->data);
 
+    }
+    
+    /**
+     * 
+     * Get news by ID
+     * 
+     * @param INT $id
+     * @return string
+     */
+    public function News ($id = 0) {
+        
+        $this->news_row = $this->Home_model->GetNews($id);
+        
+        $this->title_for_layout = ('News');
+        
+        $this->title_spage = $this->news_row->titre;
+        
+        //$this->breadcrumbs = "<li><a href='" . base_url () . "News'>{NEWS_TITLE}</a></li>";
+        
+        $this->data['News_id'] = $this->news_row->id;
+        $this->data['News_title'] = $this->news_row->titre;
+        $this->data['News_content'] = $this->news_row->news;
+        $this->data['News_time'] = $this->news_row->date_created;
+        $this->data['News_author'] = $this->news_row->author;
+        
+        return $this->layout->view ('pages/News', $this->data);
+        
+        
     }
     
 }
