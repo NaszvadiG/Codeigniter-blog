@@ -1,22 +1,43 @@
 <?php
+
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
 class Home_model extends CI_Model {
     
+    /**
+     *
+     * @var string 
+     */
     protected $table_news = "news";
     
+    /**
+     * 
+     * @return boolean
+     */
     public function __construct() {
         
         parent::__construct();
         
+        return TRUE;
+        
     }
     
+    /**
+     * 
+     * @return string
+     */
     public function GetTotalRows () {
         
         return $this->db->count_all($this->table_news);
         
     }
     
+    /**
+     * 
+     * @param int $limit
+     * @param int $start
+     * @return boolean
+     */
     public function GetNewsliste ($limit, $start) {
         
         $this->db->limit($limit, $start);
@@ -33,9 +54,14 @@ class Home_model extends CI_Model {
         
     }
     
+    /**
+     * 
+     * @param string $id
+     * @return string
+     */
     public function GetNews ($id) {
         
-        return $this->db->query("SELECT *, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') FROM " . $this->table_news . " WHERE id='".$id."'")->row();
+        return $this->db->query("SELECT *, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_created' FROM " . $this->table_news . " WHERE id='".$id."'")->row();
         
     }
     

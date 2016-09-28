@@ -4,8 +4,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Layout {
     
+    /**
+     *
+     * @var string 
+     */
     private $includes, $ci, $view, $datas;
     
+    /**
+     * 
+     * @return boolean
+     */
     public function __construct() {
         
         $this->ci = &get_instance();
@@ -15,6 +23,14 @@ class Layout {
         
     }
     
+    /**
+     * 
+     * @param string $type
+     * @param string $file
+     * @param int $extern
+     * @param string $options
+     * @return string $this
+     */
     public function add_includes($type, $file, $extern = 0, $options = NULL) {
         
         if ($extern == 0) {
@@ -32,6 +48,10 @@ class Layout {
         return $this;
     }
     
+    /**
+     * 
+     * @return string
+     */
     private function set_title() {
         
         $this->titles = $this->ci->config->item('name_site');
@@ -50,7 +70,10 @@ class Layout {
         
     }
 
-
+    /**
+     * 
+     * @return string
+     */
     private function get_breadcrumbs() {
         
         if (!$this->ci->uri->segment(2) OR (in_array($this->ci->uri->segment(2), ["Home", "home"]) and !$this->ci->uri->segment(3))) {
@@ -74,6 +97,13 @@ class Layout {
         
     }
     
+    /**
+     * 
+     * @param string $name
+     * @param string $data
+     * @param string $layout
+     * @return string
+     */
     public function view($name, $data = [], $layout = 'default') {
         
         // $obj->cache->save('data', $data, 3600);

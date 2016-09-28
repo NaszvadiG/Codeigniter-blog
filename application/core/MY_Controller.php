@@ -4,10 +4,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
     
+    /**
+     *
+     * @var array 
+     */
     protected $langredirect = ['french', 'english'];
 
+    /**
+     *
+     * @var array 
+     */
     private $language = ['fr' => 'french', 'en' => 'english'];
 
+    /**
+     * 
+     * @return boolean
+     */
     public function __construct() {
 
         parent::__construct ();
@@ -50,6 +62,10 @@ class MY_Controller extends CI_Controller {
         
     }
     
+    /**
+     * 
+     * @return string $this
+     */
     protected function GetCSS () {
         
         $this->layout->add_includes('css', 'http://fonts.googleapis.com/css?family=Oswald:400,700,300', 1);
@@ -61,6 +77,10 @@ class MY_Controller extends CI_Controller {
         
     }
     
+    /**
+     * 
+     * @return string $this
+     */
     protected function GetJS () {
         
         /*
@@ -92,6 +112,10 @@ class MY_Controller extends CI_Controller {
         
     }
     
+    /**
+     * 
+     * @return boolean
+     */
     protected function SetLang () {
         
         if ($this->uri->segment(1) != FALSE) {
@@ -123,6 +147,11 @@ class MY_Controller extends CI_Controller {
         
     }
 
+    /**
+     * 
+     * @param string $account
+     * @return boolean
+     */
     protected function RememberMe($account) {
 
         $this->load->model('Auth_model');

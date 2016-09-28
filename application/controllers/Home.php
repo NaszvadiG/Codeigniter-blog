@@ -77,8 +77,6 @@ class Home extends MY_Controller {
         
         $this->title_spage = $this->news_row->titre;
         
-        //$this->breadcrumbs = "<li><a href='" . base_url () . "News'>{NEWS_TITLE}</a></li>";
-        
         $this->data['News_id'] = $this->news_row->id;
         $this->data['News_title'] = $this->news_row->titre;
         $this->data['News_content'] = $this->news_row->news;
