@@ -173,5 +173,6 @@
             }
         }
         ?>
+        <div class="Token"  style="display: none;"><?php echo $this->security->get_csrf_hash(); ?></div>
     </body>
 </html>

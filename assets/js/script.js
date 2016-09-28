@@ -124,14 +124,14 @@ $(document).ready(function () {
                 $.ajax({
                     type: "POST",
                     url: GetBaseUrl() + "API/GetUsernameExists",
-                    data: {'username' : PseudoOrMail_Value,'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+                    data: {'username' : PseudoOrMail_Value,'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
                     success : function(data) {
                         if(JSON.parse(JSON.stringify(data)).Result === 1) { // Identifiant trouver
                             
                             $.ajax({
                                 type: "POST",
                                 url: GetBaseUrl() + "API/GetPasswordCorrect",
-                                data: {'password' : Password_Value, 'remember' : SaveMe_Value, 'account': JSON.parse(JSON.stringify(data)).AccountID, 'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+                                data: {'password' : Password_Value, 'remember' : SaveMe_Value, 'account': JSON.parse(JSON.stringify(data)).AccountID, 'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
                                 success : function(data) {
                                     if(JSON.parse(JSON.stringify(data)).Result === 1) { // Mot de passe correct
                                         FlashNotifDiv.html("<div class=\"alert alert-success\" role=\"alert\">Connexion réussi, chargement en cours</div>");
@@ -156,13 +156,13 @@ $(document).ready(function () {
                 $.ajax({
                     type: "POST",
                     url: GetBaseUrl() + "API/GetEmailExists",
-                    data: {'email' : PseudoOrMail_Value,'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+                    data: {'email' : PseudoOrMail_Value,'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
                     success : function(data) {
                         if(JSON.parse(JSON.stringify(data)).Result === 1) { // Identifiant trouver
                             $.ajax({
                                 type: "POST",
                                 url: GetBaseUrl() + "API/GetPasswordCorrect",
-                                data: {'password' : Password_Value, 'remember' : SaveMe_Value, 'account': JSON.parse(JSON.stringify(data)).AccountID, 'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+                                data: {'password' : Password_Value, 'remember' : SaveMe_Value, 'account': JSON.parse(JSON.stringify(data)).AccountID, 'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
                                 success : function(data) {
                                     if(JSON.parse(JSON.stringify(data)).Result === 1) { // Mot de passe correct
                                         FlashNotifDiv.html("<div class=\"alert alert-success\" role=\"alert\">Connexion réussi, chargement en cours</div>");
@@ -204,7 +204,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: GetBaseUrl() + "API/SetLogout",
-            data: {'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+            data: {'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
             success : function(data) {
                 if(JSON.parse(JSON.stringify(data)).Result === 1) {
                     FlashNotifDiv.html("<div class=\"alert alert-success\" role=\"alert\">Deconnexion réussi, chargement en cours</div>");
@@ -229,7 +229,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: GetBaseUrl() + "API/AddMessageChatbox",
-                data: {'message' : message, 'token_data' : $('.Token').text(), 'token_name' : 'token_rencontre', 'token_rencontre' : $('.Token').text()},
+                data: {'message' : message, 'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
                 success : function(data) {
                     
                     $(".Chatbox_Message").val("");
@@ -253,7 +253,7 @@ $(document).ready(function () {
     $.ajax({
         type: "POST",
         url: GetBaseUrl() + "API/GetChatbox",
-        data: {'token_data' : $('.Token').text(), 'token_name' : 'token_rencontre', 'token_rencontre' : $('.Token').text()},
+        data: {'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
         async: true,
         success : function(data) {
             $("#loading").remove();
@@ -278,7 +278,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: GetBaseUrl() + "API/GetUsernameByID",
-            data: {'accountID' : user, 'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+            data: {'accountID' : user, 'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
             async: true,
             success : function(data) {
                 id.html(text.replace("%s", data.AccountUsername));
