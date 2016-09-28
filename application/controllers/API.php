@@ -125,6 +125,15 @@ class API extends CI_Controller {
         $this->array['chatbox'] = $this->General_model->get_message_chatbox();
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
+    
+    public function AddMessageChatbox () {
+        $this->array = $this->GetInfo();
+        $this->General_model->add_message_chatbox($_POST['message'], $this->session->userdata("account_id"));
+        
+        $this->array['chatbox'] = array("user" => $this->session->userdata("account_id"), "msg" => $_POST['message'], "time" => "Le <span>" . date('d-m-Y') . "</span> &agrave; <span>" . date('H:i:s') . "</span>");
+        return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
+        //$_POST['account'];
+    }
     /* CHATBOX */
     
     /**

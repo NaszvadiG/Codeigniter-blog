@@ -103,7 +103,7 @@
                                     <li><span id="loading">Loading...</span></li>
                                 </ul>
                             </div>
-                            <form class="form-inline">
+                            <form id="FormChatbox" class="form-inline">
                                 <input class="form-control Chatbox_Message" placeholder="Message" type="text" />
                                 <button type="submit" class="btn btn-primary Chatbox_Input">Envoyez</button>
                             </form>

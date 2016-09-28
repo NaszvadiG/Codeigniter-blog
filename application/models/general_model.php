@@ -39,4 +39,8 @@ class General_model extends CI_Model {
 	return $this->db->query("SELECT *, DATE_FORMAT(`time`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'time' FROM chatbox ORDER BY id DESC LIMIT $limit")->result_array();
     }
     
+    public function add_message_chatbox ($message, $author) {
+        return $this->db->query("INSERT INTO chatbox SET user='$author', msg='$message'");
+    }
+    
 }

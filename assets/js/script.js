@@ -219,10 +219,33 @@ $(document).ready(function () {
     
     /* CHATBOX */
     //<span>Deathart</span> (27/09/2017 à 13h44) : Message test
+    $("form#FormChatbox").submit(function (e) {
+        e.preventDefault();
+        
+        var message = $(".Chatbox_Message").val();
+        
+        if (message != null) {
+            
+            $.ajax({
+                type: "POST",
+                url: GetBaseUrl() + "API/AddMessageChatbox",
+                data: {'message' : message, 'token_data' : $('.Token').text(), 'token_name' : 'token_rencontre', 'token_rencontre' : $('.Token').text()},
+                success : function(data) {
+                    
+                    $(".Chatbox_Message").val("");
+                    //addMessages(data.chatbox);
+                    $(".message ul").prepend("<li>Par <span>" + GetUsernameByID(data.chatbox.user) + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
+                    
+                }
+            });
+        }
+        return false;
+    });
+    
     function addMessages(json) {
 
         $.each(json, function(i,val){
-            $(".message ul").append("<li><span>" + GetUsernameByID(val.user) + "</span> (" + val.time + "): " + val.msg + "</li>");				
+            $(".message ul").append("<li>Par <span>" + GetUsernameByID(val.user) + "</span> (" + val.time + "): " + val.msg + "</li>");				
         });
         
     }
@@ -230,7 +253,7 @@ $(document).ready(function () {
     $.ajax({
         type: "POST",
         url: GetBaseUrl() + "API/GetChatbox",
-        data: {'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+        data: {'token_data' : $('.Token').text(), 'token_name' : 'token_rencontre', 'token_rencontre' : $('.Token').text()},
         success : function(data) {
             $("#loading").remove();
             addMessages(data.chatbox);
