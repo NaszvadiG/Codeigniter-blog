@@ -103,10 +103,12 @@
                                     <li><span id="loading">Loading...</span></li>
                                 </ul>
                             </div>
+                            <?php if ($this->session->userdata('logged_in') == TRUE) { ?>
                             <form id="FormChatbox" class="form-inline">
                                 <input class="form-control Chatbox_Message" placeholder="Message" type="text" />
                                 <button type="submit" class="btn btn-primary Chatbox_Input">Envoyez</button>
                             </form>
+                            <?php } ?>
                         </div>
                     </div>
                     <ol class="breadcrumb">
