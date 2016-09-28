@@ -2013,3 +2013,9 @@ body {
 #news .news_content .text {
   padding: 5px;
 }
+#news:first {
+  margin-top: 0px;
+}
+#news:not(:first-child) {
+  margin-top: 15px;
+}

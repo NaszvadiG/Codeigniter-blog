@@ -454,4 +454,12 @@ body {
         
     }
     
+    &:first {
+        margin-top: 0px;
+    }
+
+    &:not(:first-child) {
+        margin-top: 15px;
+    }
+    
 }
