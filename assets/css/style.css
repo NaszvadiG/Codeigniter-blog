@@ -1905,6 +1905,9 @@ body {
   font-size: x-large;
   font-weight: bold;
 }
+.news_home .news_home_header small {
+  font-size: x-small;
+}
 .news_home .news_home_content {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;

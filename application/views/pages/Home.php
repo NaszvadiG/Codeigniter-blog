@@ -4,7 +4,7 @@ if ($GetListeNews != null) {
     foreach ($GetListeNews as $value) { 
     ?>
 <div class="news_home">
-    <div class="news_home_header"><?php echo $value['titre']; ?></div>
+    <div class="news_home_header"><?php echo $value['titre']; ?> <small>(<?php echo $value['name']; ?>)</small></div>
     <div class="news_home_content">
         <div class="info">
             Par <span data-user="<?php echo $value['author']; ?>">%s</span> / <?php echo $value['date_created']; ?>
