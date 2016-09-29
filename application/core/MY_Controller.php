@@ -2,17 +2,20 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * Class MY_Controller
+ */
 class MY_Controller extends CI_Controller {
     
     /**
      *
-     * @var array 
+     * @array
      */
     protected $langredirect = ['french', 'english'];
 
     /**
      *
-     * @var array 
+     * @array
      */
     private $language = ['fr' => 'french', 'en' => 'english'];
 
@@ -107,7 +110,10 @@ class MY_Controller extends CI_Controller {
         return $this;
         
     }
-    
+
+    /**
+     *
+     */
     protected function GetNotif () {
         
     }

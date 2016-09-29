@@ -28,32 +28,47 @@
 
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
+/**
+ * Class MY_Lang
+ */
 class MY_Lang extends CI_Lang {
-	
-    /**
-    * ************************************************
-    * configuration
-    * *************************************************
-    */
 
-    // languages
+    /**
+     * languages
+     *
+     * @var array
+     */
     private $languages =  [
         'fr' => 'french',
         'en' => 'english'
     ];
 
-    // special URIs (not localized)
+    /**
+     * special URIs (not localized)
+     *
+     * @var array
+     */
     private $special =  [
         'API',
         'assets'
     ];
 
-    // where to redirect if no language in URI
-    private $uri, $default_uri, $lang_code;
+    /**
+     * @var
+     */
+    private $uri;
+    /**
+     * @var
+     */
+    private $default_uri;
+    /**
+     * @var
+     */
+    private $lang_code;
 
     /**
-    * ***********************************************
-    */
+     * MY_Lang constructor.
+     */
     public function __construct () {
         parent::__construct();
         
@@ -92,8 +107,12 @@ class MY_Lang extends CI_Lang {
         }
     }
 
-    // get current language
-    // ex: return 'en' if language in CI config is 'english'
+    /**
+     * get current language
+     * ex: return 'en' if language in CI config is 'english'
+     *
+     * @return mixed|null
+     */
     public function lang () {
         global $CFG;
         $language = $CFG->item('language');
@@ -105,6 +124,12 @@ class MY_Lang extends CI_Lang {
 
         return NULL; // this should not happen
     }
+
+    /**
+     * @param $lang_code
+     *
+     * @return bool
+     */
     public function is_special ($lang_code) {
         if ((! empty ($lang_code)) && (in_array ($lang_code, $this->special))) {
             return TRUE;
@@ -113,6 +138,12 @@ class MY_Lang extends CI_Lang {
             return FALSE;
         }
     }
+
+    /**
+     * @param $lang
+     *
+     * @return string
+     */
     public function switch_uri ($lang) {
         if ((!empty($this->uri )) && (array_key_exists($lang, $this->languages))) {
             if ($uri_segment = $this->get_uri_lang($this->uri)) {
@@ -126,8 +157,13 @@ class MY_Lang extends CI_Lang {
         return $uri;
     }
 
-    // check if the language exists
-    // when true returns an array with lang abbreviation + rest
+    /**
+     * check if the language exists
+     * when true returns an array with lang abbreviation + rest
+     * @param string $uri
+     *
+     * @return bool
+     */
     public function get_uri_lang ($uri = '') {
         if (!empty ($uri)) {
             $uri = ($uri[0] == '/') ? substr($uri, 1) : $uri;
@@ -145,7 +181,11 @@ class MY_Lang extends CI_Lang {
         }
     }
 
-    // default language: first element of $this->languages
+    /**
+     * default language: first element of $this->languages
+     *
+     * @return mixed|string
+     */
     public function default_lang () {
         if (!isset($_COOKIE["lang_choise"])) {
             $browser_lang = !empty($_SERVER ['HTTP_ACCEPT_LANGUAGE']) ? strtok(strip_tags($_SERVER ['HTTP_ACCEPT_LANGUAGE']), ',') : '';
@@ -168,7 +208,13 @@ class MY_Lang extends CI_Lang {
         }
     }
 
-    // add language segment to $uri (if appropriate)
+    /**
+     * add language segment to $uri (if appropriate)
+     *
+     * @param $uri
+     *
+     * @return string
+     */
     public function localized ($uri) {
         if (!empty($uri)) {
             $uri_segment = $this->get_uri_lang($uri);

@@ -1,10 +1,19 @@
 <?php
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
+/**
+ * Class Home
+ */
 class Home extends MY_Controller {
-    
+
+    /**
+     * @var array
+     */
     public $data = [];
 
+    /**
+     * Home constructor.
+     */
     public function __construct() {
 
         parent::__construct();
@@ -18,8 +27,7 @@ class Home extends MY_Controller {
     }
 
     /**
-     * 
-     * @return string
+     * @return mixed
      */
     public function index() {
 

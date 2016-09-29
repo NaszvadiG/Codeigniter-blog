@@ -2,6 +2,9 @@
 
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
+/**
+ * Class Auth_model
+ */
 class Auth_model extends CI_Model {
     
     /**

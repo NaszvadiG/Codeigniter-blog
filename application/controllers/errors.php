@@ -2,12 +2,29 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * Class Errors
+ */
 class Errors extends MY_Controller {
-    
-    public $data = [];
-    
-    public $title_for_layout, $breadcrumbs;
 
+    /**
+     * @var array
+     */
+    public $data = [];
+
+    /**
+     * @var string
+     */
+    public $title_for_layout;
+    /**
+     * @var string
+     */
+    public $breadcrumbs;
+
+    /**
+     * Errors constructor.
+     * @return boolean
+     */
     public function __construct() {
 
         parent::__construct ();
@@ -22,12 +39,18 @@ class Errors extends MY_Controller {
 
     }
 
+    /**
+     * return string
+     */
     public function index() {
 
         return redirect ( 'Errors/error_404' );
 
     }
 
+    /**
+     * @return mixed
+     */
     public function error_404() {
 
         $this->breadcrumbs .= "<li class='active'>" . lang('Title_Page_Error_404') . "</li>";
@@ -37,6 +60,9 @@ class Errors extends MY_Controller {
 
     }
 
+    /**
+     * @param int $id
+     */
     public function Code($id = null) {
 
         //1 = API token non trouver
