@@ -217,14 +217,15 @@ $(document).ready(function () {
     });
     /* LOGOUT AUTH */
     
-    /* CHATBOX */
-    //<span>Deathart</span> (27/09/2017 à 13h44) : Message test
+    /* CHATBOX */    
+    UpdateShoutbox();
+    
     $("form#FormChatbox").submit(function (e) {
         e.preventDefault();
         
         var message = $(".Chatbox_Message").val();
         
-        if (message != null) {
+        if (message != "") {
             
             $.ajax({
                 type: "POST",
@@ -234,7 +235,7 @@ $(document).ready(function () {
                     
                     $(".Chatbox_Message").val("");
                     //addMessages(data.chatbox);
-                    $(".message ul").prepend("<li>Par <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
+                    $(".message ul").prepend("<li data-chatboxid=\"" + data.chatbox.id + "\">Par <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
                     
                 }
             });
@@ -245,21 +246,33 @@ $(document).ready(function () {
     function addMessages(json) {
 
         $.each(json, function(i,val){
-            $(".message ul").append("<li>Par <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");		
+            $(".message ul").append("<li class=\"ShoutboxLI\" data-chatboxid='"+val.id+"'>Par <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");		
         });
         
     }
     
-    $.ajax({
-        type: "POST",
-        url: GetBaseUrl() + "API/GetChatbox",
-        data: {'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
-        async: true,
-        success : function(data) {
-            $("#loading").remove();
-            addMessages(data.chatbox);
-        }
-    });
+    function UpdateShoutbox () {
+        
+        var premierID = $('.ShoutboxLI').first().data('chatboxid');
+        
+        $.ajax({
+            type: "POST",
+            url: GetBaseUrl() + "API/GetChatbox/" + premierID,
+            data: {'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
+            async: true,
+            success : function(data) {
+                $("#loading").remove();
+                addMessages(data.chatbox);
+            }
+        });
+             
+         setTimeout( function(){
+             
+             UpdateShoutbox();
+             
+         }, 4000);
+         
+    }
     /* CHATBOX */
     
     /* REPLACE */

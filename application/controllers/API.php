@@ -72,6 +72,12 @@ class API extends CI_Controller {
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
     
+    /**
+     * 
+     * Logout USER
+     * 
+     * @return string
+     */
     public function SetLogout () {
         
         $this->load->helper('cookie');
@@ -86,6 +92,12 @@ class API extends CI_Controller {
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
     
+    /**
+     * 
+     * @param string $account
+     * @param string $remember
+     * @return boolean
+     */
     private function SetSession ($account, $remember) {
         
         $this->DataSession = [
@@ -118,21 +130,25 @@ class API extends CI_Controller {
      * 
      * Get all message of chatbox in AJAX
      * 
+     * @param string $after
      * @return string
      */
-    public function GetChatbox () {
+    public function GetChatbox ($after = 0) {
         $this->array = $this->GetInfo();
-        $this->array['chatbox'] = $this->General_model->get_message_chatbox();
+        $this->array['chatbox'] = $this->General_model->get_message_chatbox($after);
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
     
+    /**
+     * 
+     * Add new chat
+     * 
+     * @return string
+     */
     public function AddMessageChatbox () {
         $this->array = $this->GetInfo();
-        $this->General_model->add_message_chatbox($_POST['message'], $this->session->userdata("account_id"));
-        
-        $this->array['chatbox'] = array("user" => $this->Auth_model->GetUsername($this->session->userdata("account_id")), "msg" => $_POST['message'], "time" => "Le <span>" . date('d-m-Y') . "</span> &agrave; <span>" . date('H:i:s') . "</span>");
+        $this->array['chatbox'] = array("id" => $this->General_model->add_message_chatbox($_POST['message'], $this->session->userdata("account_id")), "user" => $this->Auth_model->GetUsername($this->session->userdata("account_id")), "msg" => $_POST['message'], "time" => "Le <span>" . date('d-m-Y') . "</span> &agrave; <span>" . date('H:i:s') . "</span>");
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
-        //$_POST['account'];
     }
     /* CHATBOX */
     
