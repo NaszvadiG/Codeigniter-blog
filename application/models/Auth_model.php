@@ -8,11 +8,6 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class Auth_model extends CI_Model {
     
     /**
-     * @var string 
-     */
-    private $table_users = "users";
-    
-    /**
      * @return boolean
      */
     public function __construct() {
@@ -29,7 +24,7 @@ class Auth_model extends CI_Model {
      * @return string
      */
     public function GetUsername ($data) {
-        return $this->db->query('SELECT username FROM '.$this->table_users.' WHERE id="'.$data.'"')->row()->username;
+        return $this->db->query('SELECT username FROM ' . $this->config->item('users', 'database') . ' WHERE id="' . $data . '"')->row()->username;
     }
     
     /**
@@ -38,7 +33,7 @@ class Auth_model extends CI_Model {
      * @return string
      */
     public function GetAvatar ($data) {
-        return $this->db->query('SELECT avatar FROM '.$this->table_users.' WHERE id="'.$data.'"')->row()->avatar;
+        return $this->db->query('SELECT avatar FROM ' . $this->config->item('users', 'database') . ' WHERE id="' . $data . '"')->row()->avatar;
     }
     
     /**
@@ -48,8 +43,8 @@ class Auth_model extends CI_Model {
      */
     public function GetUsernameExists ($data) {
         
-        if($this->db->query('SELECT * FROM '.$this->table_users.' WHERE username="'.$data.'"')->num_rows() > 0) {
-            return $this->db->query('SELECT id FROM '.$this->table_users.' WHERE username="'.$data.'"')->row()->id;
+        if($this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE username="' . $data . '"')->num_rows() > 0) {
+            return $this->db->query('SELECT id FROM ' . $this->config->item('users', 'database') . ' WHERE username="' . $data . '"')->row()->id;
         }
         else {
             return 0;
@@ -64,8 +59,8 @@ class Auth_model extends CI_Model {
      */
     public function GetEmailExists ($data) {
         
-        if($this->db->query('SELECT * FROM '.$this->table_users.' WHERE email="'.$data.'"')->num_rows() > 0) {
-            return $this->db->query('SELECT id FROM '.$this->table_users.' WHERE email="'.$data.'"')->row()->id;
+        if($this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE email="' . $data . '"')->num_rows() > 0) {
+            return $this->db->query('SELECT id FROM ' . $this->config->item('users', 'database') . ' WHERE email="' . $data . '"')->row()->id;
         }
         else {
             return 0;
@@ -79,7 +74,7 @@ class Auth_model extends CI_Model {
      * @return string
      */
     public function GetPasswordCorrect ($account) {
-        return $this->db->query('SELECT password FROM '.$this->table_users.' WHERE id="'.$account.'"')->row()->password;
+        return $this->db->query('SELECT password FROM ' . $this->config->item('users', 'database') . ' WHERE id="' . $account . '"')->row()->password;
     }
     
 }

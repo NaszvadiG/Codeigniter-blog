@@ -57,7 +57,7 @@ class Layout {
      */
     private function set_title() {
         
-        $this->titles = $this->ci->config->item('name_site');
+        $this->titles = $this->ci->config->item('name', 'site');
         
         $this->limiter = " :: ";
         

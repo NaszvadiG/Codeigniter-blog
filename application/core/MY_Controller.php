@@ -36,10 +36,6 @@ class MY_Controller extends CI_Controller {
         // Gestion language
         $this->SetLang();
 
-        // Les variables global
-        $this->data['name_site'] = $this->config->item('name_site');
-        $this->data['version'] = $this->config->item('version');
-
         // Vérification des bann's IP
         if ($this->General_model->GetIpBanned($this->input->ip_address()) == TRUE) {
             if ($this->uri->segment(3) != "Banned") {

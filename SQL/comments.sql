@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_id` int(11) NOT NULL DEFAULT '0',
+  `author` int(11) NOT NULL DEFAULT '0',
+  `date_com` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `text` text COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

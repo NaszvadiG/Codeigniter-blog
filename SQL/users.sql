@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
   `email` longtext NOT NULL,
+  `avatar` varchar(250) NOT NULL DEFAULT 'https://dummyimage.com/60x60/000/fff',
   `active` int(11) NOT NULL DEFAULT '0',
   `key_account` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),

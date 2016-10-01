@@ -18,14 +18,14 @@
     <body>
         <div class="container">
             <nav class="navbar navbar-light bg-faded">
-                <a class="navbar-brand" href="#">Responsive navbar</a>
+                <a class="navbar-brand" href="<?php echo base_url(); ?>Home"><?php echo $this->config->item('name', 'site'); ?></a>
                 <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
                     &#9776;
                 </button>
                 <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="<?php echo base_url(); ?>Home">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Features</a>
@@ -162,7 +162,7 @@
         <nav class="navbar navbar-fixed-bottom navbar-light bg-faded footer">
             <a class="navbar-brand" href="#">© Deathart.fr - <?php echo date('Y'); ?></a>
             <div class="pull-right">
-                Page rendered in <strong>{elapsed_time}</strong> seconds - <?php echo $version; ?>
+                Page rendered in <strong>{elapsed_time}</strong> seconds - <?php echo $this->config->item('version', 'site') ?>
             </div>
         </nav>
         <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
