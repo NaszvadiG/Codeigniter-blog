@@ -97,7 +97,7 @@ $(document).ready(function () {
     /* SET LANG */
     
     /* LOGIN AUTH */
-    $("#LoginRight").on('submit', function(e) {
+    $("#LoginRight").submit(function (e) {
         
         e.preventDefault();
         
@@ -221,7 +221,10 @@ $(document).ready(function () {
     UpdateShoutbox();
     
     $("form#FormChatbox").submit(function (e) {
+        
         e.preventDefault();
+        
+        $(".Chatbox_Input").html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
         
         var message = $(".Chatbox_Message").val();
         
@@ -236,7 +239,7 @@ $(document).ready(function () {
                     $(".Chatbox_Message").val("");
                     //addMessages(data.chatbox);
                     $(".message ul").prepend("<li class=\"ShoutboxLI\" data-chatboxid=\"" + data.chatbox.id + "\"><img src='" + data.chatbox.avatar + "' width='16px' height='16px' /> <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
-                    
+                    $(".Chatbox_Input").html('Envoyez');
                 }
             });
         }

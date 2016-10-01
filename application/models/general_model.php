@@ -55,9 +55,7 @@ class General_model extends CI_Model {
      */
     public function add_message_chatbox ($message, $author) {
         $this->db->query('INSERT INTO chatbox(user, msg) VALUES ("'.$author.'", "'.$message.'")');
-        $insert_id = $this->db->insert_id();
-
-        return  $insert_id;
+        return $this->db->insert_id();
     }
     
 }

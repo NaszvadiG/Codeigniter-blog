@@ -173,6 +173,15 @@ class API extends CI_Controller {
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
     /* CHATBOX */
+    
+    /* COMMENTS */
+    public function AddComInNews () {
+        $this->load->model('Home_model');
+        $this->array = $this->GetInfo();
+        $this->array['CommID'] = $this->Home_model->AddComNews($_POST['news'], $_POST['message'], $this->session->userdata("account_id"));
+        return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
+    }
+    /* COMMENTS */
 
     /**
      *

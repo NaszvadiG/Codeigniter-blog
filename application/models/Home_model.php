@@ -84,4 +84,11 @@ class Home_model extends CI_Model {
         
     }
     
+    public function AddComNews ($news, $msg, $user) {
+        
+        $this->db->query("INSERT INTO " . $this->table_commentaires . "(news_id, author, text) VALUES ('" . $news . "', '" . $user . "', '" . $msg . "')");
+        return $this->db->insert_id();
+        
+    }
+    
 }

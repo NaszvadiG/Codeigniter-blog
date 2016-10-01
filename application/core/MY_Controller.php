@@ -57,8 +57,8 @@ class MY_Controller extends CI_Controller {
         }
 
         // AutoLoad language
-        if (file_exists(APPPATH . 'language/' . $this->language [$this->lang->lang ()] . '/' . $this->uri->segment ( 2 ) . '.php')) {
-            $this->lang->load($this->uri->segment ( 2 ), '', '', FALSE);
+        if (file_exists(APPPATH . 'language/' . $this->language[$this->lang->lang()] . '/' . $this->uri->segment(2) . '.php')) {
+            $this->lang->load($this->uri->segment(2), '', '', FALSE);
         }
         
         return TRUE;
@@ -106,6 +106,13 @@ class MY_Controller extends CI_Controller {
          * Other
          */
         $this->layout->add_includes('js', 'assets/js/script.js');
+        
+        /*
+         * Pages
+         */
+        if (file_exists('assets/js/Page/' . $this->uri->segment(2) . '/' . $this->uri->segment(3) . '.js')) {
+            $this->layout->add_includes('js', 'assets/js/Page/' . $this->uri->segment(2) . '/' . $this->uri->segment(3) . '.js');
+        }
         
         return $this;
         
