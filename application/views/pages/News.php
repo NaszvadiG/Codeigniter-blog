@@ -13,16 +13,27 @@
 <div id="news">
     <div class="news_header">Commentaire(s)</div>
     <div class="news_content">
+        <?php if ($Commentaire_all != NULL) { foreach($Commentaire_all as $comm) { ?>
         <div class="media text">
             <div class="media-left">
-                <a href="#">
-                    <img class="media-object" src="https://dummyimage.com/64x64/000/fff" alt="Generic placeholder image">
+                <a href="<?php echo base_url(); ?>Users/View/<?php echo $comm['author']; ?>">
+                    <img class="media-object" src="<?php echo $comm['avatar']; ?>" alt="Generic placeholder image">
                 </a>
             </div>
             <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                <h4 class="media-heading"><?php echo $comm['username']; ?> (<?php echo $comm['date_com']; ?>)</h4>
+                <?php echo $comm['text']; ?>
             </div>
         </div>
+        <?php } } else { echo ('<div class="text">Aucun commentaire</div>'); } ?>
+    </div>
+</div>
+<div id="news">
+    <div class="news_header">Ajouter un commentaire</div>
+    <div class="news_content">
+        <form class="text">
+            <textarea class="form-control textarea-addcomment"></textarea>
+            <button type="button" class="btn btn-primary btn-addcomment">Primary</button>
+        </form>
     </div>
 </div>

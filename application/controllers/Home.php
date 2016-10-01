@@ -91,6 +91,8 @@ class Home extends MY_Controller {
         $this->data['News_time'] = $this->news_row->date_created;
         $this->data['News_author'] = $this->news_row->author;
         
+        $this->data['Commentaire_all'] = $this->Home_model->GetCommentaires($this->news_row->id);
+        
         return $this->layout->view ('pages/News', $this->data);
         
         

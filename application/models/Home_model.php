@@ -12,6 +12,12 @@ class Home_model extends CI_Model {
     
     /**
      * 
+     * @var string
+     */
+    protected $table_commentaires = "comments";
+    
+    /**
+     * 
      * @return boolean
      */
     public function __construct() {
@@ -63,7 +69,13 @@ class Home_model extends CI_Model {
      */
     public function GetNews ($id) {
         
-        return $this->db->query("SELECT *, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_created' FROM " . $this->table_news . " WHERE id='".$id."'")->row();
+        return $this->db->query("SELECT *, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_created' FROM " . $this->table_news . " WHERE id='" . $id . "'")->row();
+        
+    }
+    
+    public function GetCommentaires ($news) {
+        
+        return $this->db->query("SELECT *, users.username, users.avatar, DATE_FORMAT(`date_com`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_com' FROM " . $this->table_commentaires . " LEFT JOIN users ON users.id = comments.author WHERE news_id='" . $news . "'")->result_array();
         
     }
     

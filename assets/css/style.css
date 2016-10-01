@@ -2016,6 +2016,10 @@ body {
 #news .news_content .text {
   padding: 5px;
 }
+#news .news_content .btn-addcomment {
+  margin-top: 5px;
+  margin-left: 90%;
+}
 #news:first {
   margin-top: 0px;
 }

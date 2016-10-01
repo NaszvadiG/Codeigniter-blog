@@ -333,6 +333,7 @@ body {
     }
 
     .news_home_content {
+        
         @include border-bottom-radius(5px);
         border-left: 1px solid $color-primary_blue;
         border-bottom: 1px solid $color-primary_blue;
@@ -454,6 +455,11 @@ body {
         
         .text {
             padding: 5px;
+        }
+        
+        .btn-addcomment {
+            margin-top: 5px;
+            margin-left: 90%;
         }
         
     }
