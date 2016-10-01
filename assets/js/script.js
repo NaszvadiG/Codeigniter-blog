@@ -235,7 +235,7 @@ $(document).ready(function () {
                     
                     $(".Chatbox_Message").val("");
                     //addMessages(data.chatbox);
-                    $(".message ul").prepend("<li data-chatboxid=\"" + data.chatbox.id + "\"><img src='" + data.chatbox.avatar + "' width='16px' height='16px' /> <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
+                    $(".message ul").prepend("<li class=\"ShoutboxLI\" data-chatboxid=\"" + data.chatbox.id + "\"><img src='" + data.chatbox.avatar + "' width='16px' height='16px' /> <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
                     
                 }
             });
@@ -246,7 +246,10 @@ $(document).ready(function () {
     function addMessages(json) {
 
         $.each(json, function(i,val){
-            $(".message ul").append("<li class=\"ShoutboxLI\" data-chatboxid='"+val.id+"'><img src='" + val.avatar + "' width='16px' height='16px' /> <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");		
+            var premierID = $('.ShoutboxLI').first().data('chatboxid');
+            if (val.id != premierID) {
+                $(".message ul").append("<li class=\"ShoutboxLI\" data-chatboxid='"+val.id+"'><img src='" + val.avatar + "' width='16px' height='16px' /> <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");		
+            }
         });
         
     }
@@ -255,8 +258,16 @@ $(document).ready(function () {
              
         setTimeout( function(){
              
-            var premierID = $('.ShoutboxLI').first().data('chatboxid');
-
+            var IDcalc = $('.ShoutboxLI').first().data('chatboxid');
+            var premierID = "";
+            
+            if (IDcalc == null) {
+                premierID = 0;
+            }
+            else {
+                premierID = IDcalc;
+            }
+            
             $.ajax({
                 type: "POST",
                 url: GetBaseUrl() + "API/GetChatbox/" + premierID,
