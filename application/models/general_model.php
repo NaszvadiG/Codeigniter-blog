@@ -40,10 +40,10 @@ class General_model extends CI_Model {
      */
     public function get_message_chatbox ($after, $limit = 100) {	
         if ($after != 0) {
-            return $this->db->query("SELECT chatbox.id, chatbox.msg, users.username, DATE_FORMAT(`time`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'time' FROM chatbox LEFT JOIN users ON users.id = chatbox.user WHERE chatbox.id > '".$after."' ORDER BY chatbox.id DESC LIMIT $limit")->result_array();
+            return $this->db->query("SELECT chatbox.id, chatbox.msg, users.username, users.avatar, DATE_FORMAT(`time`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'time' FROM chatbox LEFT JOIN users ON users.id = chatbox.user WHERE chatbox.id > '".$after."' ORDER BY chatbox.id DESC LIMIT $limit")->result_array();
         }
         else {
-            return $this->db->query("SELECT chatbox.id, chatbox.msg, users.username, DATE_FORMAT(`time`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'time' FROM chatbox LEFT JOIN users ON users.id = chatbox.user ORDER BY chatbox.id DESC LIMIT $limit")->result_array();
+            return $this->db->query("SELECT chatbox.id, chatbox.msg, users.username, users.avatar, DATE_FORMAT(`time`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'time' FROM chatbox LEFT JOIN users ON users.id = chatbox.user ORDER BY chatbox.id DESC LIMIT $limit")->result_array();
         }
     }
 

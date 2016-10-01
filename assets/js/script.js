@@ -235,7 +235,7 @@ $(document).ready(function () {
                     
                     $(".Chatbox_Message").val("");
                     //addMessages(data.chatbox);
-                    $(".message ul").prepend("<li data-chatboxid=\"" + data.chatbox.id + "\">Par <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
+                    $(".message ul").prepend("<li data-chatboxid=\"" + data.chatbox.id + "\"><img src='" + data.chatbox.avatar + "' width='16px' height='16px' /> <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
                     
                 }
             });
@@ -246,31 +246,31 @@ $(document).ready(function () {
     function addMessages(json) {
 
         $.each(json, function(i,val){
-            $(".message ul").append("<li class=\"ShoutboxLI\" data-chatboxid='"+val.id+"'>Par <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");		
+            $(".message ul").append("<li class=\"ShoutboxLI\" data-chatboxid='"+val.id+"'><img src='" + val.avatar + "' width='16px' height='16px' /> <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");		
         });
         
     }
     
     function UpdateShoutbox () {
-        
-        var premierID = $('.ShoutboxLI').first().data('chatboxid');
-        
-        $.ajax({
-            type: "POST",
-            url: GetBaseUrl() + "API/GetChatbox/" + premierID,
-            data: {'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
-            async: true,
-            success : function(data) {
-                $("#loading").remove();
-                addMessages(data.chatbox);
-            }
-        });
              
-         setTimeout( function(){
+        setTimeout( function(){
              
-             UpdateShoutbox();
+            var premierID = $('.ShoutboxLI').first().data('chatboxid');
+
+            $.ajax({
+                type: "POST",
+                url: GetBaseUrl() + "API/GetChatbox/" + premierID,
+                data: {'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
+                async: true,
+                success : function(data) {
+                    $("#loading").remove();
+                    addMessages(data.chatbox);
+                }
+            });
              
-         }, 4000);
+            UpdateShoutbox();
+             
+        }, 1000);
          
     }
     /* CHATBOX */

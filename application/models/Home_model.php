@@ -73,6 +73,11 @@ class Home_model extends CI_Model {
         
     }
     
+    /**
+     * 
+     * @param string $news
+     * @return string
+     */
     public function GetCommentaires ($news) {
         
         return $this->db->query("SELECT *, users.username, users.avatar, DATE_FORMAT(`date_com`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_com' FROM " . $this->table_commentaires . " LEFT JOIN users ON users.id = comments.author WHERE news_id='" . $news . "'")->result_array();

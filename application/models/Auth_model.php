@@ -35,6 +35,15 @@ class Auth_model extends CI_Model {
     /**
      * 
      * @param string $data
+     * @return string
+     */
+    public function GetAvatar ($data) {
+        return $this->db->query('SELECT avatar FROM '.$this->table_users.' WHERE id="'.$data.'"')->row()->avatar;
+    }
+    
+    /**
+     * 
+     * @param string $data
      * @return string or int
      */
     public function GetUsernameExists ($data) {
