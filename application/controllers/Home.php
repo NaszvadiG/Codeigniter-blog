@@ -65,7 +65,7 @@ class Home extends MY_Controller {
         
         $this->page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->data['GetListeNews'] = $this->Home_model->GetNewsliste($config["per_page"], $this->page);
-
+        
         return $this->layout->view ('pages/Home', $this->data);
 
     }

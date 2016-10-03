@@ -174,16 +174,31 @@ class API extends CI_Controller {
      */
     public function AddMessageChatbox () {
         $this->array = $this->GetInfo();
-        $this->array['chatbox'] = array("id" => $this->General_model->add_message_chatbox($_POST['message'], $this->session->userdata("account_id")), "avatar" => $this->Auth_model->GetAvatar($this->session->userdata("account_id")), "user" => $this->Auth_model->GetUsername($this->session->userdata("account_id")), "msg" => $_POST['message'], "time" => "Le <span>" . date('d-m-Y') . "</span> &agrave; <span>" . date('H:i:s') . "</span>");
+        if ($this->getauthorisation()) {
+            $this->array['chatbox'] = array("id" => $this->General_model->add_message_chatbox($_POST['message'], $this->session->userdata("account_id")), "avatar" => $this->Auth_model->GetAvatar($this->session->userdata("account_id")), "user" => $this->Auth_model->GetUsername($this->session->userdata("account_id")), "msg" => $_POST['message'], "time" => "Le <span>" . date('d-m-Y') . "</span> &agrave; <span>" . date('H:i:s') . "</span>");
+        }
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
     /* CHATBOX */
     
     /* COMMENTS */
+    /**
+     * 
+     * ADD new comments
+     * 
+     * @return string
+     */
     public function AddComInNews () {
         $this->load->model('Home_model');
         $this->array = $this->GetInfo();
-        $this->array['CommID'] = $this->Home_model->AddComNews($_POST['news'], $_POST['message'], $this->session->userdata("account_id"));
+        if ($this->getauthorisation()) {
+            $this->authordetect = $this->session->userdata("account_id");
+        }
+        else {
+            $this->authordetect = 0;
+        }
+        //$this->authordetect =
+        $this->array['CommID'] = $this->Home_model->AddComNews($_POST['news'], $_POST['message'], $this->authordetect);
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
     /* COMMENTS */
@@ -198,6 +213,21 @@ class API extends CI_Controller {
 
         return ["API version" => "v1", "token" => $this->security->get_csrf_hash()];
 
+    }
+    
+    /**
+     * 
+     * Vérify authorisation for API
+     * 
+     * @return boolean
+     */
+    private function getauthorisation () {
+        if ($this->session->userdata('logged_in') == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
     }
 
 }

@@ -16,12 +16,19 @@
         <?php if ($Commentaire_all != NULL) { foreach($Commentaire_all as $comm) { ?>
         <div class="media text">
             <div class="media-left">
+                <?php 
+                if($comm['author'] == 0) {
+                    echo ('<img class="media-object" src="https://dummyimage.com/60x60/000/fff" alt="Generic placeholder image">');
+                }
+                else {
+                ?>
                 <a href="<?php echo base_url(); ?>Users/View/<?php echo $comm['author']; ?>">
                     <img class="media-object" src="<?php echo $comm['avatar']; ?>" alt="Generic placeholder image">
                 </a>
+                <?php } ?>
             </div>
             <div class="media-body">
-                <h4 class="media-heading"><?php echo $comm['username']; ?> (<?php echo $comm['date_com']; ?>)</h4>
+                <h4 class="media-heading"><?php if($comm['username'] == null) { echo ('Anonyme'); } else { echo $comm['username']; } ?> (<?php echo $comm['date_com']; ?>)</h4>
                 <?php echo $comm['text']; ?>
             </div>
         </div>

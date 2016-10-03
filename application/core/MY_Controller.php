@@ -179,5 +179,9 @@ class MY_Controller extends CI_Controller {
         return TRUE;
         
     }
+    
+    protected function Logged_in () {
+        echo 'test';
+    }
         
 }
