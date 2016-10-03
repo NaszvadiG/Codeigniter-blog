@@ -58,4 +58,12 @@ class General_model extends CI_Model {
         return $this->db->insert_id();
     }
     
+    /**
+     * 
+     * @return string
+     */
+    public function MemberOnline () {        
+        return $this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE last_login >= "' . time()-(60*5) . '"')->result_array();
+    }
+    
 }

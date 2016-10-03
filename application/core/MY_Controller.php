@@ -49,7 +49,7 @@ class MY_Controller extends CI_Controller {
         // Si l'utilisateur est connecter
         if ($this->session->userdata('logged_in') == TRUE) {
             $this->data['GetNotifTotal'] = $this->GetNotif();
-            //$this->SetLastActivity
+            $this->SetLastActivity();
         }
 
         // AutoLoad language
@@ -180,8 +180,18 @@ class MY_Controller extends CI_Controller {
         
     }
     
-    protected function Logged_in () {
-        echo 'test';
+    /**
+     * 
+     * @return boolean
+     */
+    protected function SetLastActivity () {
+        
+        $this->load->model('Auth_model');
+        
+        $this->Auth_model->SetLastActiv($this->session->userdata('logged_in'));
+        
+        return TRUE;
+        
     }
         
 }

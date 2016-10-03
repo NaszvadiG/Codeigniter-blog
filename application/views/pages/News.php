@@ -40,7 +40,7 @@
     <div class="news_content">
         <form class="text" id="ADDCOMMENT" data-newsid="<?php echo $News_id; ?>">
             <textarea class="form-control textarea-addcomment"></textarea>
-            <button type="submit" class="btn btn-primary btn-addcomment">Primary</button>
+            <button type="submit" class="btn btn-primary btn-addcomment">Commenter</button>
         </form>
     </div>
 </div>

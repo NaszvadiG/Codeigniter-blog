@@ -77,4 +77,12 @@ class Auth_model extends CI_Model {
         return $this->db->query('SELECT password FROM ' . $this->config->item('users', 'database') . ' WHERE id="' . $account . '"')->row()->password;
     }
     
+    /**
+     * 
+     * @param string $account
+     * @return string
+     */
+    public function SetLastActiv ($account) {
+        return $this->db->query('UPDATE ' . $this->config->item('users', 'database') . ' SET last_login="'.time().'" WHERE id="'.$account.'"');
+    }
 }
