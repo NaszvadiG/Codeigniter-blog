@@ -35,10 +35,11 @@ class Home_model extends CI_Model {
     public function GetNewsliste ($limit, $start) {
         
         $this->db->limit($limit, $start);
-        $this->db->select("*, " . $this->config->item('categorie', 'database') . ".name, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_created'");
+        $this->db->select("*, ".$this->config->item('users', 'database').".username, " . $this->config->item('categorie', 'database') . ".name, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_created'");
         $this->db->join($this->config->item('categorie', 'database'), $this->config->item('categorie', 'database') . ".id = " . $this->config->item('news', 'database') . ".categorie", 'left');
+        $this->db->join($this->config->item('users', 'database'), $this->config->item('users', 'database') . ".id = " . $this->config->item('news', 'database') . ".author", 'left');
         
-        $this->query = $this->db->get_where($this->config->item('news', 'database'), ["active" => "1"]);
+        $this->query = $this->db->get_where($this->config->item('news', 'database'), [$this->config->item('news', 'database').".active" => "1"]);
 
         if ($this->query->num_rows() > 0) {
             foreach ($this->query->result_array() as $this->row) {
@@ -57,8 +58,12 @@ class Home_model extends CI_Model {
      */
     public function GetNews ($id) {
         
-        return $this->db->query("SELECT *, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_created' FROM " . $this->config->item('news', 'database') . " WHERE id='" . $id . "'")->row();
+        //$this->db->limit($limit, $start);
+        $this->db->select("*, ".$this->config->item('users', 'database').".username, " . $this->config->item('categorie', 'database') . ".name, DATE_FORMAT(`date_created`,'Le <span>%d-%m-%Y</span> &agrave; <span>%H:%i:%s</span>') AS 'date_created'");
+        $this->db->join($this->config->item('categorie', 'database'), $this->config->item('categorie', 'database') . ".id = " . $this->config->item('news', 'database') . ".categorie", 'left');
+        $this->db->join($this->config->item('users', 'database'), $this->config->item('users', 'database') . ".id = " . $this->config->item('news', 'database') . ".author", 'left');
         
+        return $this->db->get_where($this->config->item('news', 'database'), [$this->config->item('news', 'database').".id" => $id])->row();
     }
     
     /**

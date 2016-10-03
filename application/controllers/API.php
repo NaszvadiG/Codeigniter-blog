@@ -157,7 +157,12 @@ class API extends CI_Controller {
      */
     public function GetChatbox ($after = 0) {
         $this->array = $this->GetInfo();
-        $this->array['chatbox'] = $this->General_model->get_message_chatbox($after);
+        if($this->General_model->get_message_chatbox($after)->num_rows() > 0) {
+            $this->array['chatbox'] = $this->General_model->get_message_chatbox($after)->result_array();
+        }
+        else {
+            $this->array['chatbox'] = "0";
+        }
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
 

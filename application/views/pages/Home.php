@@ -7,7 +7,7 @@ if ($GetListeNews != null) {
     <div class="news_home_header"><?php echo $value['titre']; ?> <small>(<?php echo $value['name']; ?>)</small></div>
     <div class="news_home_content">
         <div class="info">
-            Par <span data-user="<?php echo $value['author']; ?>">%s</span> / <?php echo $value['date_created']; ?>
+            Par <span data-user="<?php echo $value['author']; ?>"><?php echo $value['username']; ?></span> / <?php echo $value['date_created']; ?>
         </div>
         <div class="contentainer">
             <div class="screen">

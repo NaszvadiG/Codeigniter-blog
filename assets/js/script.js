@@ -235,9 +235,10 @@ $(document).ready(function () {
                 url: GetBaseUrl() + "API/AddMessageChatbox",
                 data: {'message' : message, 'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
                 success : function(data) {
-                    
-                    $(".Chatbox_Message").val("");
-                    //addMessages(data.chatbox);
+                    if($('.ShoutboxLI').first().data('chatboxid') == 0) {
+                        $("#loading").remove();
+                    }
+                    $(".Chatbox_Message").val("").empty();
                     $(".message ul").prepend("<li class=\"ShoutboxLI\" data-chatboxid=\"" + data.chatbox.id + "\"><img src='" + data.chatbox.avatar + "' width='16px' height='16px' /> <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
                     $(".Chatbox_Input").html('Envoyez');
                 }
@@ -245,31 +246,12 @@ $(document).ready(function () {
         }
         return false;
     });
-    
-    function addMessages(json) {
 
-        $.each(json, function(i,val){
-            var premierID = $('.ShoutboxLI').first().data('chatboxid');
-            if (val.id != premierID) {
-                $(".message ul").append("<li class=\"ShoutboxLI\" data-chatboxid='"+val.id+"'><img src='" + val.avatar + "' width='16px' height='16px' /> <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");		
-            }
-        });
-        
-    }
-    
     function UpdateShoutbox () {
              
         setTimeout( function(){
              
-            var IDcalc = $('.ShoutboxLI').first().data('chatboxid');
-            var premierID = "";
-            
-            if (IDcalc == null) {
-                premierID = 0;
-            }
-            else {
-                premierID = IDcalc;
-            }
+            var premierID = $('.ShoutboxLI').last().data('chatboxid');
             
             $.ajax({
                 type: "POST",
@@ -277,44 +259,23 @@ $(document).ready(function () {
                 data: {'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
                 async: true,
                 success : function(data) {
-                    $("#loading").remove();
-                    addMessages(data.chatbox);
+                    if (data.chatbox != 0) {
+                        $("#loading").remove();
+                        $.each(data.chatbox, function(i,val){
+                            $(".message ul").prepend("<li class=\"ShoutboxLI\" data-chatboxid='"+val.id+"'><img src='" + val.avatar + "' width='16px' height='16px' /> <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");
+                        });
+                    }
+                    else {
+                        $("#loading").html("Aucun message");
+                    }
                 }
             });
              
             UpdateShoutbox();
              
-        }, 1000);
+        }, 3000);
          
     }
     /* CHATBOX */
     
-    /* REPLACE */
-    $('body').find("[data-user]").each(function(){
-        
-        var replace_this = $(this);
-        var replace_account_ID = $(this).data('user');
-        var replace_account_text = $(this).html();
-
-        ReplaceUser(replace_account_ID, replace_account_text, replace_this);
-        
-    });
-    
-    function ReplaceUser (user, text, id) {
-        
-        $.ajax({
-            type: "POST",
-            url: GetBaseUrl() + "API/GetUsernameByID",
-            data: {'accountID' : user, 'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
-            async: true,
-            success : function(data) {
-                id.html(text.replace("%s", data.AccountUsername));
-            },
-            error: function(err) {
-                id.html(text.replace("%s", "Account not found"));
-            }
-        });
-        
-    }
-    /* REPLACE */
 });

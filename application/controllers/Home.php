@@ -89,7 +89,8 @@ class Home extends MY_Controller {
         $this->data['News_title'] = $this->news_row->titre;
         $this->data['News_content'] = $this->news_row->news;
         $this->data['News_time'] = $this->news_row->date_created;
-        $this->data['News_author'] = $this->news_row->author;
+        $this->data['News_authorID'] = $this->news_row->author;
+        $this->data['News_author'] = $this->news_row->username;
         
         $this->data['Commentaire_all'] = $this->Home_model->GetCommentaires($this->news_row->id);
         

@@ -100,7 +100,7 @@
                         <div class="content">
                             <div class="message">
                                 <ul>
-                                    <li><span id="loading">Loading...</span></li>
+                                    <li class="ShoutboxLI" id="loading" data-chatboxid="0">Loading...</li>
                                 </ul>
                             </div>
                             <?php if ($this->session->userdata('logged_in') == TRUE) { ?>
