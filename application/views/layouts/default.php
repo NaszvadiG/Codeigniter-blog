@@ -153,8 +153,10 @@
                         </div>
                     </div>
                     <div id="BoxPrimary">
-                        <div class="header">test</div>
-                        <div class="contentain">bla-bla</div>
+                        <div class="header">Membres en ligne</div>
+                        <div class="contentain" id="MembersOnline">
+                            <div id="MembersOnlineLoading">Loading...</div>
+                        </div>
                     </div>
                 </div>
             </div>

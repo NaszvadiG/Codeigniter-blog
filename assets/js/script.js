@@ -278,4 +278,31 @@ $(document).ready(function () {
     }
     /* CHATBOX */
     
+    /* MEMBERS ONLINE */
+    MembersOnlines();
+    function MembersOnlines () {
+        $.ajax({
+            type: "POST",
+            url: GetBaseUrl() + "API/GetMembersOnline/",
+            data: {'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
+            async: true,
+            success : function(data) {
+                if (data.MemberOnline != 0) {
+                    $("#MembersOnline").html("");
+                    $("#MembersOnlineLoading").remove();
+                    $.each(data.MemberOnline, function(i,val){
+                        $("#MembersOnline").prepend("<div><a href=\" " + GetBaseUrl() + "/Account/view/" + val.id + "\"><img src='" + val.avatar + "' width='16px' height='16px' />" + val.username + "</a></div>");
+                    });
+                }
+                else {
+                    $("#MembersOnlineLoading").html("Aucun membre de connecté");
+                }
+            }
+        });
+        setTimeout( function(){
+            MembersOnlines();
+        }, 300000);
+    }
+    /* MEMBERS ONLINE */
+    
 });

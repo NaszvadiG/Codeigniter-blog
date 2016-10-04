@@ -202,6 +202,14 @@ class API extends CI_Controller {
         return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
     }
     /* COMMENTS */
+    
+    /* MEMBERS ONLINE */
+    public function GetMembersOnline () {
+        $this->array = $this->GetInfo();
+        $this->array['MemberOnline'] = $this->General_model->MemberOnline();
+        return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
+    }
+    /* MEMBERS ONLINE */
 
     /**
      *

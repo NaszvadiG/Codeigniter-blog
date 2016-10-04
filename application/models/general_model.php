@@ -60,10 +60,13 @@ class General_model extends CI_Model {
     
     /**
      * 
+     * get MembersOnline
+     * 
      * @return string
      */
     public function MemberOnline () {        
-        return $this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE last_login >= "' . time()-(60*5) . '"')->result_array();
+        $this->datetime = time()-(60*5);
+        return $this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE last_login >= "' . $this->datetime . '"')->result_array();
     }
     
 }
