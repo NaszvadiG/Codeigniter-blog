@@ -188,7 +188,7 @@ class MY_Controller extends CI_Controller {
         
         $this->load->model('Auth_model');
         
-        $this->Auth_model->SetLastActiv($this->session->userdata('logged_in'));
+        $this->Auth_model->SetLastActiv($this->session->userdata('account_id'));
         
         return TRUE;
         
