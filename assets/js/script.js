@@ -305,4 +305,31 @@ $(document).ready(function () {
     }
     /* MEMBERS ONLINE */
     
+    /* VERSION */
+    //version_ajax
+    $.getJSON( "https://api.github.com/repos/deathart/Codeigniter-blog/commits", function( data ) {
+
+        var val = data.length.toString().split("");
+        var newText = "";
+        
+        val.forEach(function(value, index){
+            if (index % 1 == 0) {
+                newText += ".";
+            }
+            newText += value;
+        });
+        
+        if (newText.substring(1).length == 3) {
+            $(".version_ajax").html("0.0." + newText.substring(1));
+        }
+        else if (newText.substring(1).length == 5) {
+            $(".version_ajax").html("0." + newText.substring(1));
+        }
+        else {
+            $(".version_ajax").html(newText.substring(1));
+        }
+
+    });
+    /* VERSION */
+    
 });

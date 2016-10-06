@@ -14,4 +14,4 @@ $config['database']['banned_ip'] = "banned_ip";
 $config['database']['users'] = "users";
 
 // DO NOT TOUCH
-$config['site']['version'] = "<strong>1.0.0.0</strong> (CodeIgniter : <strong>" . CI_VERSION . "</strong>)";
+$config['site']['version'] = "<strong class=\"version_ajax\">Loading</strong> (CodeIgniter : <strong>" . CI_VERSION . "</strong>)";
