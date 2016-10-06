@@ -1859,6 +1859,13 @@ body {
 }
 
 #BoxPrimary {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
   margin-top: 15px;
 }
 #BoxPrimary .header {
@@ -1940,14 +1947,14 @@ body {
   }
 }
 .news_home .news_home_content .contentainer .screen img {
-  padding-top: 5px;
+  padding: 5px;
 }
 .news_home .news_home_content .contentainer .message {
   padding: 5px;
 }
 @media (min-width: 768px) {
   .news_home .news_home_content .contentainer .message {
-    margin-left: 145px;
+    margin-left: 150px;
   }
 }
 .news_home .news_home_content .contentainer .message .show_more {

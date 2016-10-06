@@ -284,6 +284,8 @@ body {
 
 #BoxPrimary {
     
+    @include make-col-ready();
+    @include make-col(12);
     margin-top: 15px;
         
     .header {
@@ -369,7 +371,7 @@ body {
                 border-right: 1px solid $color-primary_blue;
                 
                 img {
-                    padding-top: 5px;
+                    padding: 5px;
                 }
                 
             }
@@ -377,7 +379,7 @@ body {
             .message {
                 padding: 5px;
                 @media (min-width: 768px) {
-                    margin-left: 145px;
+                    margin-left: 150px;
                 }
                 
                 .show_more {
