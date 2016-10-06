@@ -307,28 +307,34 @@ $(document).ready(function () {
     
     /* VERSION */
     //version_ajax
-    $.getJSON( "https://api.github.com/repos/deathart/Codeigniter-blog/commits", function( data ) {
+    $.ajax({
+        type: "GET",
+        url: "https://api.github.com/repos/deathart/Codeigniter-blog/contributors",
+        async: true,
+        success : function(data) {
+            $.each(data, function(i,val){
 
-        var val = data.length.toString().split("");
-        var newText = "";
-        
-        val.forEach(function(value, index){
-            if (index % 1 == 0) {
-                newText += ".";
+            var val = val.contributions.toString().split("");
+            var newText = "";
+
+            val.forEach(function(value, index){
+                if (index % 1 == 0) {
+                    newText += ".";
+                }
+                newText += value;
+            });
+
+            if (newText.substring(1).length == 3) {
+                $(".version_ajax").html("0.0." + newText.substring(1));
             }
-            newText += value;
-        });
-        
-        if (newText.substring(1).length == 3) {
-            $(".version_ajax").html("0.0." + newText.substring(1));
+            else if (newText.substring(1).length == 5) {
+                $(".version_ajax").html("0." + newText.substring(1));
+            }
+            else {
+                $(".version_ajax").html(newText.substring(1));
+            }
+            });
         }
-        else if (newText.substring(1).length == 5) {
-            $(".version_ajax").html("0." + newText.substring(1));
-        }
-        else {
-            $(".version_ajax").html(newText.substring(1));
-        }
-
     });
     /* VERSION */
     
