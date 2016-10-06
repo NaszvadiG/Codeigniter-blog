@@ -28,13 +28,7 @@
                             <a class="nav-link" href="<?php echo base_url(); ?>Home">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="<?php echo base_url(); ?>Home/Contact">Contact</a>
                         </li>
                     </ul>
                     <div class="pull-xs-right lang_select">
@@ -146,8 +140,8 @@
                                 </div>
                             </form>
                             <ul class="list-group">
-                                <li class="list-group-item list-group-item-warning"><a href="#">Mot de passe oublié ?</a></li>
-                                <li class="list-group-item list-group-item-info"><a href="#">Inscription !</a></li>
+                                <li class="list-group-item list-group-item-warning"><a href="<?php echo base_url(); ?>Auth/ResetPassword">Mot de passe oublié ?</a></li>
+                                <li class="list-group-item list-group-item-info"><a href="<?php echo base_url(); ?>Auth/Register">Inscription !</a></li>
                             </ul>
                         <?php } ?>
                         </div>
@@ -162,7 +156,7 @@
             </div>
         </div>
         <nav class="navbar navbar-fixed-bottom navbar-light bg-faded footer">
-            <a class="navbar-brand" href="#">© Deathart.fr - <?php echo date('Y'); ?></a>
+            <a class="navbar-brand" href="https://deathart.fr/" target="_blank">© Deathart.fr - <?php echo date('Y'); ?></a>
             <div class="pull-right">
                 Page rendered in <strong>{elapsed_time}</strong> seconds - <?php echo $this->config->item('version', 'site') ?>
             </div>
