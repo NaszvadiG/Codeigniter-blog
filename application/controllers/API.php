@@ -145,6 +145,22 @@ class API extends CI_Controller {
 
         return TRUE;
     }
+    
+    /**
+     * Add new account in database
+     * @return string
+     */
+    public function SetNewAccount () {
+        
+        $this->array = $this->GetInfo();
+        
+        $this->Auth_model->SetNewAccount($_POST['username'], password_hash($_POST['password'], PASSWORD_BCRYPT), $_POST['email']);
+        
+        $this->array["Result"] = 1;
+        
+        return $this->output->set_content_type('application/json')->set_output(json_encode($this->array));
+        
+    }
 
     /* CHATBOX */
 

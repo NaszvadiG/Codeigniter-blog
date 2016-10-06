@@ -28,7 +28,7 @@ $(document).ready(function () {
             $.ajax({ // fonction permettant de faire de l'ajax
                 type: "POST", // methode de transmission des données au fichier php
                 url: GetBaseUrl() + "API/GetUsernameExists", // url du fichier php
-                data: {'username' : input_username,'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+                data: {'username' : input_username,'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
                 success : function(data) {
                     if(JSON.parse(JSON.stringify(data)).Result === 0) { // None existe
                         if ($("#InputUsername").parent("div").hasClass("has-error") === true) {
@@ -58,7 +58,7 @@ $(document).ready(function () {
                     $.ajax({
                         type: "POST",
                         url: GetBaseUrl() + "API/GetEmailExists",
-                        data: {'email' : input_email_1,'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+                        data: {'email' : input_email_1,'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
                         success : function(data) {
                             if(JSON.parse(JSON.stringify(data)).Result === 0) { // None existe
                                 if ($("#InputEmail1").parent("div").hasClass("has-error") === true) {
@@ -127,11 +127,11 @@ $(document).ready(function () {
                 
                 type: "POST",
                 url: GetBaseUrl() + "API/SetNewAccount",
-                data: {'username' : input_username, 'password': input_password_1, 'email': input_email_1 ,'token_data' : $('.Token').text(),'token_name' : 'token_rencontre','token_rencontre' : $('.Token').text()},
+                data: {'username' : input_username, 'password': input_password_1, 'email': input_email_1 ,'token_data' : $('.Token').text(),'token_name' : 'token_blog','token_blog' : $('.Token').text()},
                 success : function(data) {
                     if(JSON.parse(JSON.stringify(data)).Result === 1) { // Account REGISTER
                         
-                        $("#register").prepend("<div class=\"alert alert-success success-input-empty\" role=\"alert\">REGISTER VALIDATE</div>");
+                        $("#register").prepend("<div class=\"alert alert-success success-input-empty\" role=\"alert\">Inscription réussi</div>");
                         
                     }
                     else {

@@ -19,7 +19,7 @@ class Auth extends MY_Controller {
 
         parent::__construct();
         
-        $this->title_spage = "Auth";
+        $this->title_for_layout = ('Authentification');
 
         $this->load->model('Auth_model');
 
@@ -32,6 +32,22 @@ class Auth extends MY_Controller {
      */
     public function index() {
         
+        
+    }
+    
+    /**
+     * Form for new Account
+     * @return string
+     */
+    public function Register () {
+        
+        $this->title_spage = "Inscription";
+        
+        return $this->layout->view ('pages/Auth/Register', $this->data);
+        
+    }
+    
+    public function ResetPassword () {
         
     }
 

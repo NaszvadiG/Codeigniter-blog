@@ -13,6 +13,7 @@ class Home extends MY_Controller {
 
     /**
      * Home constructor.
+     * @return boolean
      */
     public function __construct() {
 

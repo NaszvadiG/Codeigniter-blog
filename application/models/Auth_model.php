@@ -85,4 +85,18 @@ class Auth_model extends CI_Model {
     public function SetLastActiv ($account) {
         return $this->db->query('UPDATE ' . $this->config->item('users', 'database') . ' SET last_login="'.time().'" WHERE id="'.$account.'"');
     }
+    
+    /**
+     * 
+     * @param string $username
+     * @param string $password
+     * @param string $email
+     * @return boolean
+     */
+    public function SetNewAccount ($username, $password, $email) {
+        
+        $this->db->query("INSERT INTO " . $this->config->item('users', 'database') . " (username, password, email, key_account) VALUES ('".$username."', '".$password."', '".$email."', '".GetGeneratedKey(25)."')");
+        
+        return TRUE;
+    }
 }
