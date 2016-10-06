@@ -65,7 +65,7 @@ class General_model extends CI_Model {
      * @return string
      */
     public function MemberOnline () {        
-        $this->datetime = time()-(60*5);
+        $this->datetime = (time()-5*60);
         return $this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE last_login >= "' . $this->datetime . '"')->result_array();
     }
     
