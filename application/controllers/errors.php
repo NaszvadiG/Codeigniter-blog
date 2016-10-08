@@ -53,8 +53,8 @@ class Errors extends MY_Controller {
      */
     public function error_404() {
 
-        $this->breadcrumbs .= "<li class='active'>" . lang('Title_Page_Error_404') . "</li>";
-        $this->title_for_layout = lang('Title_Page_Error_404');
+        $this->title_spage = lang('Title_Page_Error_404');
+        $this->title_for_layout = "Errors";
 
         return $this->layout->view('Errors/html/error_404');
 
