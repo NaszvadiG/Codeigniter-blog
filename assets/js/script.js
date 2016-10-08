@@ -240,6 +240,7 @@ $(document).ready(function () {
                     }
                     $(".Chatbox_Message").val("").empty();
                     $(".message ul").append("<li class=\"ShoutboxLI\" data-chatboxid=\"" + data.chatbox.id + "\"><img src='" + data.chatbox.avatar + "' width='16px' height='16px' /> <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
+                    $(".message").animate({scrollTop: $('.ShoutboxLI').last().offset().top}, "slow")
                     $(".Chatbox_Input").html('Envoyez');
                 }
             });
@@ -264,6 +265,8 @@ $(document).ready(function () {
                         $.each(data.chatbox, function(i,val){
                             $(".message ul").prepend("<li class=\"ShoutboxLI\" data-chatboxid='"+val.id+"'><img src='" + val.avatar + "' width='16px' height='16px' /> <span>" + val.username + "</span> (" + val.time + "): " + val.msg + "</li>");
                         });
+                        
+                        $(".message").animate({scrollTop: $('.ShoutboxLI').last().offset().top}, "slow")
                     }
                     else {
                         $("#loading").html("Aucun message");
