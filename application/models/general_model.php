@@ -68,4 +68,25 @@ class General_model extends CI_Model {
         return $this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE last_login >= "' . date("Y-m-d H:i:s", time() - (60 * 5)) . '"')->result_array();
     }
     
+    /**
+     * 
+     * Get principal categori for left menu
+     * 
+     * @return string
+     */
+    public function GetMenus () {
+        return $this->db->query('SELECT * FROM ' . $this->config->item('categorie', 'database') . ' WHERE parents = 0')->result_array();
+    }
+    
+    /**
+     * 
+     * Get sous categorie for left menu by ID parent
+     * 
+     * @param string $parent
+     * @return string
+     */
+    public function GetSousMenus ($parent) {
+        return $this->db->query('SELECT * FROM ' . $this->config->item('categorie', 'database') . ' WHERE parents = "' . $parent . '"')->result_array();
+    }
+    
 }

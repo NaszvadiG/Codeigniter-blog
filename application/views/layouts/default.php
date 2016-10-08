@@ -45,40 +45,16 @@
                         <div class="header">Menu</div>
                         <div class="contentain">
                             <div id="menu">
-                                <div class="menu" data-menu="sousmenu1">
-                                    <a href="#">Menu 1</a>
-                                </div>
-                                <div id="sousmenu1" class="sousmenugeneral">
-                                    <div class="sousmenu">
-                                        <a href="#">Sous-Menu 1.1</a>
-                                    </div>
-                                    <div class="sousmenu">
-                                        <a href="#">Sous-Menu 1.2</a>
-                                    </div>
-                                    <div class="sousmenu">
-                                        <a href="#">Sous-Menu 1.3</a>
-                                    </div>
-                                    <div class="sousmenu">
-                                        <a href="#">Sous-Menu 1.4</a>
-                                    </div>
-                                </div>
-                                <div class="menu" data-menu="sousmenu2">
-                                    <a href="#">Menu 1</a>
-                                </div>
-                                <div id="sousmenu2" class="sousmenugeneral active">
-                                    <div class="sousmenu">
-                                        <a href="#">Sous-Menu 1.1</a>
-                                    </div>
-                                    <div class="sousmenu">
-                                        <a href="#">Sous-Menu 1.2</a>
-                                    </div>
-                                    <div class="sousmenu">
-                                        <a href="#">Sous-Menu 1.3</a>
-                                    </div>
-                                    <div class="sousmenu">
-                                        <a href="#">Sous-Menu 1.4</a>
-                                    </div>
-                                </div>
+                                <?php
+                                foreach ($this->General_model->GetMenus() as $menu) {
+                                    echo ("<div class=\"menu\" data-menu=\"sousmenu" . $menu['id'] . "\"><a href=\"" . base_url() . "Categorie/" . $menu['id'] . "\">" . $menu['name'] . " </a></div>");
+                                    echo ("<div id=\"sousmenu1\" class=\"sousmenugeneral active\">");
+                                    foreach ($this->General_model->GetSousMenus($menu['id']) as $sousmenu) {
+                                        echo ("<div class=\"sousmenu\"><a href=\"" . base_url() . "Categorie/" . $sousmenu['id'] . "\">" . $sousmenu['name'] . " </a></div>");
+                                    }
+                                    echo ("</div>");
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
