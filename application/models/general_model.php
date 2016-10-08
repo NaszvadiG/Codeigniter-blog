@@ -54,7 +54,7 @@ class General_model extends CI_Model {
      * @return mixed
      */
     public function add_message_chatbox ($message, $author) {
-        $this->db->query('INSERT INTO ' . $this->config->item('chatbox', 'database') . '(user, msg) VALUES ("'.$author.'", "'.$message.'")');
+        $this->db->query('INSERT INTO ' . $this->config->item('chatbox', 'database') . '(user, msg) VALUES ("' . $author . '", "' . $message . '")');
         return $this->db->insert_id();
     }
     
@@ -64,9 +64,8 @@ class General_model extends CI_Model {
      * 
      * @return string
      */
-    public function MemberOnline () {        
-        $this->datetime = (time()-5*60);
-        return $this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE last_login >= "' . $this->datetime . '"')->result_array();
+    public function MemberOnline () {
+        return $this->db->query('SELECT * FROM ' . $this->config->item('users', 'database') . ' WHERE last_login >= "' . date("Y-m-d H:i:s", time() - (60 * 5)) . '"')->result_array();
     }
     
 }

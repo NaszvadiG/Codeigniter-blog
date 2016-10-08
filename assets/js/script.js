@@ -235,11 +235,11 @@ $(document).ready(function () {
                 url: GetBaseUrl() + "API/AddMessageChatbox",
                 data: {'message' : message, 'token_data' : $('.Token').text(), 'token_name' : 'token_blog', 'token_blog' : $('.Token').text()},
                 success : function(data) {
-                    if($('.ShoutboxLI').first().data('chatboxid') == 0) {
+                    if($('.ShoutboxLI').last().data('chatboxid') == 0) {
                         $("#loading").remove();
                     }
                     $(".Chatbox_Message").val("").empty();
-                    $(".message ul").prepend("<li class=\"ShoutboxLI\" data-chatboxid=\"" + data.chatbox.id + "\"><img src='" + data.chatbox.avatar + "' width='16px' height='16px' /> <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
+                    $(".message ul").append("<li class=\"ShoutboxLI\" data-chatboxid=\"" + data.chatbox.id + "\"><img src='" + data.chatbox.avatar + "' width='16px' height='16px' /> <span>" + data.chatbox.user + "</span> (" + data.chatbox.time + "): " + data.chatbox.msg + "</li>");	
                     $(".Chatbox_Input").html('Envoyez');
                 }
             });
@@ -306,7 +306,6 @@ $(document).ready(function () {
     /* MEMBERS ONLINE */
     
     /* VERSION */
-    //version_ajax
     $.ajax({
         type: "GET",
         url: "https://api.github.com/repos/deathart/Codeigniter-blog/contributors",
